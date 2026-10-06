@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>A model is a Rust function</h1><p class="sub">Traced once at load; the same graph runs on the CPU oracle or is lowered to GPU kernels</p>
+<svg viewBox="0 0 1120 570"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="arrow" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+<rect class="box teal" x="0" y="0" width="560" height="192" rx="10"/>
+<text class="title teal" x="20" y="28">Registered family: plain Rust</text>
+<text x="20" y="62" style="white-space:pre;font-size:14px">let h  = ops::rmsnorm(b, x, attn_norm, eps);</text>
+<text x="20" y="84" style="white-space:pre;font-size:14px">let q  = ops::linear(b, h, q_proj, q_bias);</text>
+<text x="20" y="106" style="white-space:pre;font-size:14px">let q  = ops::rope(b, q, cos_table, sin_table, pos);</text>
+<text x="20" y="128" style="white-space:pre;font-size:14px">let o  = ops::attention_masked(</text>
+<text x="20" y="150" style="white-space:pre;font-size:14px">    b, q, k_cache, v_cache, n_rep, scale, mask);</text>
+<text x="20" y="172" style="white-space:pre;font-size:14px">let ff = ops::swiglu(b, gate, up);</text>
+<path class="edge" d="M560 100 L620 100" marker-end="url(#a)"/>
+<rect class="box amber" x="620" y="0" width="500" height="192" rx="10"/>
+<text class="title amber" x="640" y="28">Builder records every call</text>
+<text x="640" y="66">1  allocate a new ValueId</text>
+<text x="640" y="94">2  infer the output shape + dtype</text>
+<text x="640" y="122">3  append Eqn { op, inputs, out }</text>
+<text class="dim" x="640" y="156">Traced handles carry types only, no data.</text>
+<path class="edge" d="M870 192 L870 242" marker-end="url(#a)"/>
+<rect class="box blue" x="290" y="242" width="580" height="72" rx="10"/>
+<text class="title blue" x="580.0" y="270" text-anchor="middle">Graph IR: flat list of primitive eqns</text>
+<text class="dim" x="580.0" y="294" text-anchor="middle">a thousand or more for one Qwen2.5-0.5B decode step</text>
+<path class="edge" d="M420 314 L420 360" marker-end="url(#a)"/>
+<path class="edge" d="M740 314 L740 360" marker-end="url(#a)"/>
+<rect class="box violet" x="230" y="360" width="380" height="72" rx="10"/>
+<text class="title violet" x="420.0" y="388" text-anchor="middle">CPU oracle</text>
+<text class="dim" x="420.0" y="412" text-anchor="middle">poot_eval::eval, tensor by tensor</text>
+<rect class="box rose" x="650" y="360" width="380" height="72" rx="10"/>
+<text class="title rose" x="840.0" y="388" text-anchor="middle">Planner</text>
+<text class="dim" x="840.0" y="412" text-anchor="middle">lowers the graph to GPU kernels</text>
+<text class="dim" x="0" y="472">Four kinds of value in the graph</text>
+<rect class="box teal" x="0.0" y="488" width="262" height="72" rx="10"/>
+<text class="title teal" x="131.0" y="516" text-anchor="middle">Const</text>
+<text class="dim" x="131.0" y="540" text-anchor="middle">weights, tables</text>
+<rect class="box amber" x="286.0" y="488" width="262" height="72" rx="10"/>
+<text class="title amber" x="417.0" y="516" text-anchor="middle">Slot</text>
+<text class="dim" x="417.0" y="540" text-anchor="middle">token, position, mask</text>
+<rect class="box violet" x="572.0" y="488" width="262" height="72" rx="10"/>
+<text class="title violet" x="703.0" y="516" text-anchor="middle">State</text>
+<text class="dim" x="703.0" y="540" text-anchor="middle">the KV cache</text>
+<rect class="box blue" x="858.0" y="488" width="262" height="72" rx="10"/>
+<text class="title blue" x="989.0" y="516" text-anchor="middle">Device</text>
+<text class="dim" x="989.0" y="540" text-anchor="middle">activations, stable addresses</text>
+</svg></main>

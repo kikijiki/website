@@ -1,0 +1,56 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>Inside the $MFT</h1><p class="sub">From the raw volume to one file record and its attributes</p><svg viewBox="0 0 1120 620">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path class="arrow" d="M0,0L10,4L0,8z"/></marker></defs>
+<g text-anchor="middle">
+<rect class="box blue" x="0" y="0" width="300" height="90" rx="8"/>
+<text class="title" x="150" y="38">Raw volume</text><text class="dim" x="150" y="64">opened as \\.\C:</text>
+<rect class="box teal" x="410" y="0" width="300" height="90" rx="8"/>
+<text class="title" x="560" y="38">Boot sector</text><text class="dim" x="560" y="64">sector + cluster size, mft_lcn</text>
+<rect class="box amber" x="820" y="0" width="300" height="90" rx="8"/>
+<text class="title" x="970" y="38">$MFT position</text><text class="dim" x="970" y="64">mft_lcn x cluster size</text>
+<path class="edge" d="M300 45H408" marker-end="url(#a)"/>
+<path class="edge" d="M710 45H818" marker-end="url(#a)"/>
+
+<path class="edge" d="M970 90V130" marker-end="url(#a)"/>
+<text class="dim" x="955" y="116" text-anchor="end">fixed-size file records</text>
+
+<rect class="box amber" x="0" y="140" width="1120" height="90" rx="8"/>
+<rect class="box" x="20" y="160" width="150" height="50" rx="4"/><text x="95" y="191">#0 $MFT</text>
+<rect class="box" x="190" y="160" width="150" height="50" rx="4"/><text x="265" y="191">#5 root</text>
+<rect class="box" x="360" y="160" width="150" height="50" rx="4"/><text class="dim" x="435" y="191">#6 ... #23</text>
+<rect class="box teal" x="530" y="160" width="150" height="50" rx="4"/><text x="605" y="191">#24 file</text>
+<rect class="box teal" x="700" y="160" width="150" height="50" rx="4"/><text x="775" y="191">#25 file</text>
+<rect class="box" x="870" y="160" width="230" height="50" rx="4"/><text class="dim" x="985" y="191">... max_record</text>
+
+<path class="edge" d="M605 230V280" marker-end="url(#a)"/>
+<text class="dim" x="620" y="262" text-anchor="start">one record, fixups applied</text>
+
+<rect class="box teal" x="0" y="290" width="1120" height="130" rx="8"/>
+<rect class="box violet" x="20" y="310" width="120" height="90" rx="4"/>
+<text class="title" x="80" y="350">Header</text><text class="dim" x="80" y="374">"FILE"</text>
+<rect class="box rose" x="150" y="310" width="140" height="90" rx="4"/>
+<text class="title" x="220" y="350">Fixups</text><text class="dim" x="220" y="374">update seq.</text>
+<rect class="box blue" x="300" y="310" width="170" height="90" rx="4"/>
+<text class="title" x="385" y="345">$STANDARD</text><text class="title" x="385" y="366">_INFORMATION</text><text class="dim" x="385" y="388">0x10</text>
+<rect class="box amber" x="480" y="310" width="170" height="90" rx="4"/>
+<text class="title" x="565" y="345">$ATTRIBUTE</text><text class="title" x="565" y="366">_LIST</text><text class="dim" x="565" y="388">0x20</text>
+<rect class="box teal" x="660" y="310" width="150" height="90" rx="4"/>
+<text class="title" x="735" y="350">$FILE_NAME</text><text class="dim" x="735" y="374">0x30</text>
+<rect class="box violet" x="820" y="310" width="140" height="90" rx="4"/>
+<text class="title" x="890" y="350">$DATA</text><text class="dim" x="890" y="374">0x80</text>
+<rect class="box" x="970" y="310" width="130" height="90" rx="4"/>
+<text class="title" x="1035" y="350">End</text><text class="dim" x="1035" y="374">0xFFFFFFFF</text>
+
+<path class="edge" d="M220 400V450" marker-end="url(#a)"/>
+<path class="edge" d="M385 400V450" marker-end="url(#a)"/>
+<path class="edge" d="M735 400V450" marker-end="url(#a)"/>
+<path class="edge" d="M890 400V450" marker-end="url(#a)"/>
+
+<text x="220" y="480">sector ends</text><text class="dim" x="220" y="502">restored</text>
+<text x="385" y="480">timestamps</text><text class="dim" x="385" y="502">file attributes</text>
+<text x="735" y="480">name</text><text class="dim" x="735" y="502">parent record</text>
+<text x="890" y="480">size</text><text class="dim" x="890" y="502">data runs</text>
+
+<rect class="box amber" x="440" y="530" width="240" height="70" rx="8"/>
+<text class="title" x="560" y="560">Extension record</text><text class="dim" x="560" y="582">more attributes, same file</text>
+<path class="edge" d="M565 400V528" marker-end="url(#a)"/><text class="dim" x="580" y="470" text-anchor="start">points to</text>
+</g></svg></main>

@@ -1,0 +1,54 @@
+:root {
+  --bg: #0d1017;
+  --panel: #151a24;
+  --line: #2b3444;
+  --fg: #e6e9ef;
+  --dim: #8a94a6;
+  --teal: #2dd4bf;
+  --amber: #f5b342;
+  --violet: #a78bfa;
+  --rose: #fb7185;
+  --blue: #60a5fa;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.45 ui-monospace, "SFMono-Regular", "DejaVu Sans Mono", Consolas, monospace;
+}
+
+#d {
+  width: 1200px;
+  padding: 40px;
+  background: var(--bg);
+}
+
+h1 { font-size: 22px; font-weight: 600; }
+.sub { color: var(--dim); margin: 4px 0 28px; }
+
+svg { display: block; width: 100%; height: auto; }
+svg text { fill: var(--fg); font: inherit; font-size: 15px; }
+svg .dim { fill: var(--dim); font-size: 13px; }
+svg .title { font-size: 16px; font-weight: 600; }
+svg .box { fill: var(--panel); stroke: var(--line); stroke-width: 1.5; }
+svg .edge { fill: none; stroke: var(--dim); stroke-width: 1.5; }
+svg .arrow { fill: var(--dim); }
+
+svg .teal { stroke: var(--teal); }
+svg .amber { stroke: var(--amber); }
+svg .violet { stroke: var(--violet); }
+svg .rose { stroke: var(--rose); }
+svg .blue { stroke: var(--blue); }
+svg text.teal { fill: var(--teal); stroke: none; }
+svg text.amber { fill: var(--amber); stroke: none; }
+svg text.violet { fill: var(--violet); stroke: none; }
+svg text.rose { fill: var(--rose); stroke: none; }
+svg text.blue { fill: var(--blue); stroke: none; }
+svg .fill-teal { fill: var(--teal); stroke: none; }
+svg .fill-amber { fill: var(--amber); stroke: none; }
+svg .fill-violet { fill: var(--violet); stroke: none; }
+svg .fill-rose { fill: var(--rose); stroke: none; }
+svg .fill-blue { fill: var(--blue); stroke: none; }
+svg .fill-dim { fill: var(--line); stroke: none; }

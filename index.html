@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Matteo Bernacchia — software engineer and projects.">
+    <title>Matteo Bernacchia</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css?v=24">
+  </head>
+  <body>
+    <header>
+      <h1>Matteo Bernacchia</h1>
+      <p>Software engineer in Tokyo.</p>
+    </header>
+
+    <main>
+      <section aria-labelledby="about">
+        <h2 id="about">About</h2>
+        <p>I work on systems, graphics, AI, cloud, robotics, and developer tools.</p>
+        <ul class="links">
+          <li><a href="https://github.com/kikijiki" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/kikijiki" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:hello@kikijiki.com">Email</a></li>
+        </ul>
+      </section>
+
+      <div class="tabs">
+        <span id="tab-projects-anchor" class="tab-anchor"></span>
+        <span id="tab-resume-anchor" class="tab-anchor"></span>
+        <nav class="tab-nav">
+          <a href="#tab-projects-anchor" id="tab-projects-label">Projects</a>
+          <a href="#tab-resume-anchor" id="tab-resume-label">Experience</a>
+        </nav>
+
+        <section class="tab-panel" id="panel-projects" aria-labelledby="tab-projects-label">
+        <p>Selected personal and open-source projects.</p>
+
+        <ul class="projects">
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┌─┬─┬─┐
+├●┘ ●─┤
+│ ┌●┐ │
+├─● └●┤
+└─┴─┴─┘</pre>
+                <div class="project-summary">
+                  <h3>poot <span class="project-links"><a href="https://github.com/kikijiki/poot" target="_blank" rel="noopener">repo</a> · <a href="https://kikijiki.github.io/poot/" target="_blank" rel="noopener">website</a></span></h3>
+                  <p>A from-scratch LLM inference engine with graph tracing, kernel fusion, and multiple GPU backends.</p>
+                  <small>rust · llm inference · graph ir · wgpu · rocm · cuda</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li>Forward pass traced once into a backend-neutral graph of primitive tensor ops, not opaque hand-written kernels.</li>
+                  <li>Fused regions get kernels generated for them, while imported Rust kernels cover the shapes the generator does not (decode GEMV, flash fallback, gathers).</li>
+                  <li>GPU dispatch sequence captured once and replayed per token (CUDA graph replay, cached wgpu re-encode), to cut launch overhead rather than compute.</li>
+                  <li>Kernels written as real Rust <code>#[kernel]</code> functions lowered to SPIR-V/PTX/AMDGPU, with no cuBLAS or cuDNN.</li>
+                  <li>Models are a <code>Model</code> trait plus a family registry: each architecture traces its own graph from a GGUF or safetensors checkpoint, with GPTQ/AWQ packed quantization kept resident.</li>
+                  <li>One executor contract shared by the wgpu, ROCm and PTX backends, each checked against a CPU oracle.</li>
+                  <li>Serving capabilities: an OpenAI-compatible HTTP API with embeddings, reranking, LoRA adapter management and metrics; text generation is being reconnected to the new single-sequence driver.</li>
+                </ul>
+                <div class="project-gallery" id="poot-gallery">
+                  <a id="poot-1" href="#poot-1"><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends" loading="lazy"></a>
+                  <a id="poot-2" href="#poot-2"><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes" loading="lazy"></a>
+                  <a id="poot-3" href="#poot-3"><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends" loading="lazy"></a>
+                  <a id="poot-4" href="#poot-4"><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN" loading="lazy"></a>
+                </div>
+                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-1"><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends"></a>
+                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-2"><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes"></a>
+                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-3"><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends"></a>
+                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-4"><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┌─────┐
+│C:\  │
+│└─┬─■│
+│  └─□│
+└─────┘</pre>
+                <div class="project-summary">
+                  <h3>ntfs-reader <span class="project-links"><a href="https://github.com/kikijiki/ntfs-reader" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>Fast in-memory scans of the NTFS master file table and a reader for the USN change journal.</p>
+                  <small>rust · windows · ntfs · mft · usn journal · filesystems</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li>$MFT read straight off the raw volume into memory and parsed in one pass, not through Windows file-enumeration APIs.</li>
+                  <li>Full-volume iteration with resolved paths in 3.9s, down from 12.3s uncached.</li>
+                  <li>USN change journal read live, with event-mask filtering and a choice of start position (beginning, next, or a specific USN).</li>
+                  <li>Renames tracked across journal events by matching the new name back to the old path from an in-memory history.</li>
+                  <li>Deleted files supported: resolve their old paths, read their data back, and check whether it survived.</li>
+                  <li>Memory-bounded modes for huge volumes: stream the table in chunks, load a compact form that uses 30 to 70 percent less memory, or cap the path cache.</li>
+                </ul>
+                <div class="project-gallery" id="ntfs-reader-gallery">
+                  <a id="ntfs-reader-1" href="#ntfs-reader-1"><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes" loading="lazy"></a>
+                  <a id="ntfs-reader-2" href="#ntfs-reader-2"><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references" loading="lazy"></a>
+                  <a id="ntfs-reader-3" href="#ntfs-reader-3"><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history" loading="lazy"></a>
+                </div>
+                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-1"><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes"></a>
+                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-2"><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references"></a>
+                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-3"><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┏━━━━━┓
+┃▓▒░  ┃
+┃ ▓▒░ ┃
+┃  ▓▒░┃
+┗━━━━━┛</pre>
+                <div class="project-summary">
+                  <h3>vuldir <span class="project-links"><a href="https://github.com/kikijiki/vuldir" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>A unified rendering API for Vulkan and DirectX 12, built without third-party libraries.</p>
+                  <small>c++ · cmake · graphics · vulkan · directx 12 · hlsl</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li>One bindless API over Vulkan 1.3 and DirectX 12, omitting either backend's native binding model entirely.</li>
+                  <li>Device-owned descriptor heaps for stable resource indices that mean the same thing on both backends.</li>
+                  <li>Resource state is tracked virtually while recording and published atomically on submit, so contexts record and submit concurrently.</li>
+                  <li>Resource management, math, and PNG/HDR/JSON/glTF loaders are all from scratch, no third-party rendering libraries.</li>
+                </ul>
+                <div class="project-gallery" id="vuldir-gallery">
+                  <a id="vuldir-1" href="#vuldir-1"><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open" loading="lazy"></a>
+                  <a id="vuldir-2" href="#vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout" loading="lazy"></a>
+                  <a id="vuldir-3" href="#vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse" loading="lazy"></a>
+                  <a id="vuldir-4" href="#vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit" loading="lazy"></a>
+                </div>
+                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-1"><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open"></a>
+                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout"></a>
+                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse"></a>
+                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┏━━━━━┓
+┃ ╭─╮ ┃
+┃●┤v├●┃
+┃ ╰─╯ ┃
+┗━━━━━┛</pre>
+                <div class="project-summary">
+                  <h3>mfw <span class="project-links"><a href="https://github.com/kikijiki/mfw" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>A local-first autonomous project orchestrator that drives coding agents from goals to verified work.</p>
+                  <small>typescript · ai agents · mcp · acp · spec-driven · runpod</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li><strong>Board:</strong> a command-line tool and library that manages project work as plain markdown files in your repo instead of a database. A config file defines your own document types (tasks, specs, ADRs, anything), each with its own schema: typed fields with allowed values and defaults, links between documents such as dependencies (checked for cycles), an id scheme, and a folder layout. Claiming a task is lock-safe, so several agents can work in parallel.</li>
+                  <li><strong>Service:</strong> an orchestrator built on the board. It schedules tasks, runs coding agents (Claude Code, Codex CLI, and other subscription-based ones) in isolated git worktrees, and verifies the results before an autonomous merge to main.</li>
+                  <li><strong>UI:</strong> a web app on top of the service, with a kanban board and a live session viewer to watch and steer any running agent.</li>
+                  <li>Also: a host-wide CPU/RAM/GPU coordinator, RunPod and OpenRouter control planes, and project triggers.</li>
+                </ul>
+                <div class="project-gallery" id="mfw-gallery">
+                  <a id="mfw-1" href="#mfw-1"><img src="/projects/mfw/board.png" alt="mfw task board with a column per status" loading="lazy"></a>
+                  <a id="mfw-2" href="#mfw-2"><img src="/projects/mfw/inbox.png" alt="mfw inbox" loading="lazy"></a>
+                  <a id="mfw-3" href="#mfw-3"><img src="/projects/mfw/review.png" alt="mfw review queue" loading="lazy"></a>
+                  <a id="mfw-4" href="#mfw-4"><img src="/projects/mfw/adrs.png" alt="mfw ADR list and editor" loading="lazy"></a>
+                  <a id="mfw-5" href="#mfw-5"><img src="/projects/mfw/runs.png" alt="mfw agent runs" loading="lazy"></a>
+                  <a id="mfw-6" href="#mfw-6"><img src="/projects/mfw/triggers.png" alt="mfw project triggers" loading="lazy"></a>
+                  <a id="mfw-7" href="#mfw-7"><img src="/projects/mfw/files.png" alt="mfw project files" loading="lazy"></a>
+                  <a id="mfw-8" href="#mfw-8"><img src="/projects/mfw/settings.png" alt="mfw project settings" loading="lazy"></a>
+                  <a id="mfw-9" href="#mfw-9"><img src="/projects/mfw/resources.png" alt="mfw host resource coordinator" loading="lazy"></a>
+                  <a id="mfw-10" href="#mfw-10"><img src="/projects/mfw/runpod.png" alt="mfw RunPod control plane" loading="lazy"></a>
+                  <a id="mfw-11" href="#mfw-11"><img src="/projects/mfw/openrouter.png" alt="mfw OpenRouter control plane" loading="lazy"></a>
+                </div>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-1"><img src="/projects/mfw/board.png" alt="mfw task board with a column per status"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-2"><img src="/projects/mfw/inbox.png" alt="mfw inbox"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-3"><img src="/projects/mfw/review.png" alt="mfw review queue"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-4"><img src="/projects/mfw/adrs.png" alt="mfw ADR list and editor"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-5"><img src="/projects/mfw/runs.png" alt="mfw agent runs"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-6"><img src="/projects/mfw/triggers.png" alt="mfw project triggers"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-7"><img src="/projects/mfw/files.png" alt="mfw project files"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-8"><img src="/projects/mfw/settings.png" alt="mfw project settings"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-9"><img src="/projects/mfw/resources.png" alt="mfw host resource coordinator"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-10"><img src="/projects/mfw/runpod.png" alt="mfw RunPod control plane"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-11"><img src="/projects/mfw/openrouter.png" alt="mfw OpenRouter control plane"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┌─────┐
+│▮ ▮ ▮│
+│  ●  │
+│ ╱┴╲ │
+└─────┘</pre>
+                <div class="project-summary">
+                  <h3>combeanie <span class="project-links"><a href="https://github.com/kikijiki/combeanie" target="_blank" rel="noopener">repo</a> · <a href="https://kikijiki.github.io/combeanie/" target="_blank" rel="noopener">website</a></span></h3>
+                  <p>A simulation-first robotics system for vision-guided beverage restocking in refrigerated shelves.</p>
+                  <small>c++ · python · ros 2 · gazebo · moveit 2 · robotics</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li>Deterministic pipeline: state machine, world-state validation, geometric grasp/placement, MoveIt planning, then execution.</li>
+                  <li>Learned components as optional adapters that can only select among already-authorized primitives, never bypass planning or command joints.</li>
+                  <li>Success verified against world state, not self-report; an unproven run stopped safely, with the reason stated.</li>
+                  <li>Autonomous restocking campaign: shelf and tray surveyed, deficits worked out, and transfers chosen and repeated until no compatible pair is left.</li>
+                  <li>Lane routing that scores a real cost across compatible lanes, avoiding occupied ones and ones obstructed by something overlapping.</li>
+                  <li>Obstacles absent from every model and scenario file changing what may be executed; execution refused, joints unmoved, when scene geometry is stale.</li>
+                  <li>Seeded, byte-deterministic scenario replay for reproducing a specific failure exactly.</li>
+                </ul>
+                <div class="project-gallery" id="combeanie-gallery">
+                  <video controls playsinline preload="metadata" poster="/projects/combeanie/media/restocking-demo-poster.png">
+                    <source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4">
+                  </video>
+                  <a id="combeanie-1" href="#combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan" loading="lazy"></a>
+                  <a id="combeanie-2" href="#combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views" loading="lazy"></a>
+                  <a id="combeanie-3" href="#combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views" loading="lazy"></a>
+                  <a id="combeanie-4" href="#combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section" loading="lazy"></a>
+                </div>
+                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan"></a>
+                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views"></a>
+                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views"></a>
+                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">╭─────╮
+│  ╭● │
+│ ●┼● │
+│  ╰● │
+╰─────╯</pre>
+                <div class="project-summary">
+                  <h3>orgonzola <span class="project-links"><a href="https://github.com/kikijiki/orgonzola" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>Local-first GitHub organization intelligence for engineering leads, teams, and project health.</p>
+                  <small>rust · typescript · tauri · react · github · sqlite · rag</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li>GitHub activity indexed into teams, sprints, and work items as real linked records, not just labels.</li>
+                  <li>Code and threads chunked and embedded into a vector store for RAG-based semantic retrieval.</li>
+                  <li>Deterministic rules applied first and cheaply (stale PRs, merges without review, failing CI).</li>
+                  <li>LLM limited to fuzzy judgment; the tool stays useful with it switched off.</li>
+                </ul>
+                <div class="project-gallery" id="orgonzola-gallery">
+                  <a id="orgonzola-1" href="#orgonzola-1"><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention" loading="lazy"></a>
+                  <a id="orgonzola-2" href="#orgonzola-2"><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment" loading="lazy"></a>
+                  <a id="orgonzola-3" href="#orgonzola-3"><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list" loading="lazy"></a>
+                  <a id="orgonzola-4" href="#orgonzola-4"><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest" loading="lazy"></a>
+                </div>
+                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-1"><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention"></a>
+                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-2"><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment"></a>
+                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-3"><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list"></a>
+                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-4"><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">╭─────╮
+│ ▗█▖ │
+│▟▓▒▙ │
+│ ▝▀▘ │
+╰─────╯</pre>
+                <div class="project-summary">
+                  <h3>Obsidian plugins <span class="project-links"><a href="https://github.com/kikijiki/obsidian-habit-tracker" target="_blank" rel="noopener">Habit Tracker repo</a> · <a href="https://github.com/kikijiki/obsidian-voice-journal" target="_blank" rel="noopener">Voice Journal repo</a></span></h3>
+                  <p>Focused, local-first additions to Obsidian for daily habits and AI-assisted voice journaling.</p>
+                  <small>typescript · obsidian · markdown · local-first · speech-to-text</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li><strong>Kikijiki Habit Tracker.</strong> A compact desktop and mobile panel that records configurable habits as tags on the current note. <a href="https://community.obsidian.md/plugins/kikijiki-habit-tracker" target="_blank" rel="noopener">Install from Obsidian Community Plugins</a>.</li>
+                  <li><strong>Kikijiki Voice Journal.</strong> Imports recordings, transcribes them through a configured speech-to-text service, and asks a selected coding agent to create or update Markdown notes in the active vault; keeps original audio, transcripts, resumable run state, and a live filterable activity timeline so every automated vault edit remains traceable. <a href="https://github.com/kikijiki/obsidian-voice-journal" target="_blank" rel="noopener">Source on GitHub</a>.</li>
+                </ul>
+                <div class="project-gallery" id="obsidian-gallery">
+                  <a id="obsidian-1" href="#obsidian-1"><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles" loading="lazy"></a>
+                  <a id="obsidian-2" href="#obsidian-2"><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline" loading="lazy"></a>
+                </div>
+                <a href="#obsidian-gallery" class="lightbox" id="lightbox-obsidian-1"><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles"></a>
+                <a href="#obsidian-gallery" class="lightbox" id="lightbox-obsidian-2"><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline"></a>
+              </div>
+            </details>
+          </li>
+        </ul>
+        </section>
+
+        <section class="tab-panel" id="panel-resume" aria-labelledby="tab-resume-label">
+        <p>Software engineer with 10+ years of experience across game development and digital twin platforms, building the foundations other teams depend on: data formats and SDKs, storage and data pipelines, 3D viewers, React UIs, and CI/CD, mostly in Rust, Python, and TypeScript, from design through production release. Hands-on experience running workloads on AWS.</p>
+        <p>Currently a hands-on lead of a 6-person team: building core systems myself while owning requirements, scheduling, and security audits, and working with solutions engineers to deliver for factory customers in Japan and overseas. Design and build AI agents end to end (RAG, tool calling, tracing, evals), with an understanding of AI from the underlying math to current techniques. Beyond work, build substantial AI systems of my own, such as a from-scratch LLM inference engine.</p>
+        <p class="resume-download"><a href="/assets/resume.pdf" target="_blank" rel="noopener">Download as PDF (75 KB)</a></p>
+
+        <h3 class="resume-heading">Work Experience</h3>
+        <ul class="resume-entries resume-entries-collapsible">
+          <li>
+            <details>
+              <summary>
+                <div class="resume-entry-head">
+                  <strong>Lead Software Engineer – Digital Twin Platform</strong>
+                  <span class="resume-dates">Oct 2025 – Present</span>
+                </div>
+                <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
+                <span class="entry-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul>
+                <li>Lead the Visualizer and Data Pipeline teams (6 people in total): requirements gathering, coordination with other teams, task and schedule management, reviews and planning, security audits</li>
+                <li>Work with solutions engineers to gather needs directly from multiple factories (external companies) in Japan and overseas and feed them into development</li>
+                <li>Built a modular viewer engine (data components, logic, signals, rendering) with plugins for 3D models, Gaussian splats, shapes, text, and images, plus a React panels API with ready-made timeline, annotation, inspection, and profiling panels; adopted by multiple teams to build their own visualizers</li>
+                <li>Improved rendering performance for large files and heavy scenes, and playback and seek performance through data streaming and snapshot support; improved documentation and templates and hardened security</li>
+                <li>Continued evolving the data format and SDK with spec improvements and advanced features including snapshots, sharding, and async I/O; improved dataframe/Databricks integration</li>
+                <li>Implemented a graph-based object storage and data layer that serves every service on the platform and makes onboarding new services fast; supports deduplication, versioning, tags, queries, and recursive operations, backed by an extensive test and fuzzing suite</li>
+                <li>Ported a C#/Unity simulation engine to Rust (Bevy), eliminating licensing fees and improving execution speed by 100x, memory usage by 50x, and binary size by 20x</li>
+                <li>Developed a fully working tech demo presented at Toyota's public Kakezan showcase in Woven City, combining project management, simulation editor and execution, visualizers, KPI dashboards, and an integrated AI agent
+                  <ul>
+                    <li>Agent present throughout the multi-tool, multi-panel app, working seamlessly with the editor, visualizers, and dashboards; RAG, telemetry DB queries, and file/data search integrated as tools</li>
+                    <li>LLMs via AWS Bedrock; OpenTelemetry tracing of turns and tool calls; evals measuring accuracy on common tasks to improve prompts and context design</li>
+                  </ul>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <div class="resume-entry-head">
+                  <strong>Senior Software Engineer – Digital Twin Platform</strong>
+                  <span class="resume-dates">Aug 2024 – Sep 2025</span>
+                </div>
+                <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
+                <span class="entry-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul>
+                <li>Designed a unified data format specification, now the core technology used across the Digital Twin Platform for telemetry data streaming and storage; implemented the SDK with a Rust core and bindings for C#, Python, and WebAssembly (JavaScript/TypeScript); added CLI tools and dataframe support; integrated with viewers, simulation engines, and data pipelines</li>
+                <li>Developed a React SPA (TypeScript/Three.js/WebGL) for 3D simulation-data playback, with a 3D viewport, UI overlays, frame and asset streaming, tests, and CI/CD; met all security requirements and shipped</li>
+                <li>Added real-world telemetry playback with time-series streaming, asset animation, and custom visualizations; contributed to the design of the mapping from telemetry to viewer entities and animations</li>
+                <li>Designed a data model based on an ECS-style architecture where components are the semantic unit of data; implemented the component registry, plus related tooling, documentation, and frontend/backend support</li>
+                <li>Coordinated GitHub migrations for multiple projects; implemented CI/CD pipelines for build, test, benchmarking, audit, SBOM scanning, publishing, documentation websites, and releases</li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <div class="resume-entry-head">
+                  <strong>Lead Tools Programmer</strong>
+                  <span class="resume-dates">Sep 2018 – Jul 2024</span>
+                </div>
+                <div class="resume-entry-sub">Square Enix · Tokyo, Japan</div>
+                <span class="entry-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul>
+                <li>Led a five-person team developing a company-wide asset platform with ML-powered tagging and captioning</li>
+                <li>Designed a scalable backend using Rust, PyTorch, and PostgreSQL, and built the web interface with Axum and Leptos</li>
+                <li>Developed a visual issue-tracker plugin for Unreal Engine, adopted by three projects (150–300 users total)</li>
+                <li>Created a flexible Jenkins CI/CD template for Unreal Engine projects, reducing setup time by weeks per project</li>
+                <li>Served as technical project manager for a procedural cutscene generation project; pioneered the adoption of Rust for tools</li>
+                <li>Led tools and infrastructure development for a 50-person tech demo team, covering Perforce setup, Jenkins CI, server administration, and Sentry integration</li>
+                <li>Mentored engineers, managed task allocation, handled stakeholder requests, and collaborated with cross-functional teams</li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <div class="resume-entry-head">
+                  <strong>Game Programmer – Elden Ring</strong>
+                  <span class="resume-dates">Apr 2015 – Sep 2018</span>
+                </div>
+                <div class="resume-entry-sub">FromSoftware · Tokyo, Japan</div>
+                <span class="entry-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul>
+                <li>Implemented the full vegetation system pipeline: a 3ds Max DCC tool, BVH exporter, runtime streaming, and rendering</li>
+                <li>Converted the AI system from single-threaded to multi-threaded execution and improved Havok pathfinding for the open world</li>
+                <li>Created open-world map-building tools that merge assets, events, and metadata across LODs</li>
+                <li>Led the Git migration and GitLab deployment for the engine repositories</li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <div class="resume-entry-head">
+                  <strong>Programmer (Internship)</strong>
+                  <span class="resume-dates">Apr 2014 – Oct 2014</span>
+                </div>
+                <div class="resume-entry-sub">Cygames · Tokyo, Japan</div>
+                <span class="entry-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul>
+                <li>Developed the mobile app "O'REILLY COLLECTION" using Unity and Adobe AIR</li>
+                <li>Implemented a custom Yammer-based chat client for internal use</li>
+                <li>Received a commendation from the department lead for outstanding performance</li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+
+        <h3 class="resume-heading">Publications</h3>
+        <ul class="resume-entries">
+          <li>
+            <div class="resume-entry-head">
+              <strong>Believable Fighting Characters in Role-Playing Games Using the BDI Model</strong>
+              <span class="resume-dates">Feb 2015</span>
+            </div>
+            <div class="resume-entry-sub">Matteo Bernacchia, Jun'ichi Hoshino · Information Processing Society of Japan (IPSJ) · <a href="https://cir.nii.ac.jp/crid/1573950402597012736" target="_blank" rel="noopener">cir.nii.ac.jp</a></div>
+          </li>
+          <li>
+            <div class="resume-entry-head">
+              <strong>AI Platform for Supporting Believable Combat in Role-Playing Games</strong>
+              <span class="resume-dates">Nov 2014</span>
+            </div>
+            <div class="resume-entry-sub">Matteo Bernacchia, Jun'ichi Hoshino · Information Processing Society of Japan (IPSJ) · <a href="https://cir.nii.ac.jp/crid/1050574047113723520" target="_blank" rel="noopener">cir.nii.ac.jp</a></div>
+          </li>
+        </ul>
+
+        <h3 class="resume-heading">Skills</h3>
+        <ul class="resume-skills">
+          <li><span class="skill-label">Languages</span><span class="skill-values">Rust, C++, Python, TypeScript/JavaScript, C#, SQL</span></li>
+          <li><span class="skill-label">Engines &amp; Frameworks</span><span class="skill-values">Unreal Engine, React, Three.js, Node.js, DirectX/Vulkan, CUDA</span></li>
+          <li><span class="skill-label">AI &amp; ML</span><span class="skill-values">LLMs/GenAI (Amazon Bedrock), AI agents (tool calling, workflows), MCP, ACP, RAG, prompt/context engineering, evals, PyTorch, MLOps</span></li>
+          <li><span class="skill-label">Tools &amp; Infra</span><span class="skill-values">AWS (EKS), Git, Perforce, GitHub Actions, Jenkins, Docker, Kubernetes, Terraform, OpenTelemetry, Nix, Linux (NixOS)</span></li>
+          <li><span class="skill-label">Spoken Languages</span><span class="skill-values">Italian (Native), English (Professional; TOEFL iBT 110, TOEIC 940), Japanese (JLPT N1)</span></li>
+        </ul>
+
+        <h3 class="resume-heading">Certifications</h3>
+        <ul class="cert-groups">
+          <li>
+            <details>
+              <summary data-count="14">AI &amp; Machine Learning</summary>
+              <ul class="cert-entries">
+                <li>
+                  <div class="resume-entry-head"><strong>Deep Learning Specialization</strong><span class="resume-dates">Feb 2023</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://coursera.org/verify/specialization/6RH22NB77NLZ" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Natural Language Processing Specialization</strong><span class="resume-dates">Apr 2023</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://coursera.org/verify/specialization/3C642NJLB56F" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Generative AI with Large Language Models</strong><span class="resume-dates">Aug 2023</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI &amp; AWS (Coursera) · <a href="https://coursera.org/verify/LVZS2GGT3J58" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Generative AI for Software Development Professional Certificate</strong><span class="resume-dates">Oct 2024</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://coursera.org/verify/professional-cert/W75647JHA4RA" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>PyTorch for Deep Learning Professional Certificate</strong><span class="resume-dates">Nov 2025</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI · <a href="https://learn.deeplearning.ai/certificates/0d42b126-550f-4e5d-915c-2a86fd90644c" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Deep RL Course</strong><span class="resume-dates">Apr 2023</span></div>
+                  <div class="resume-entry-sub">Hugging Face</div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Getting Started with Deep Learning</strong><span class="resume-dates">Oct 2025</span></div>
+                  <div class="resume-entry-sub">NVIDIA (DLI) · <a href="https://learn.nvidia.com/certificates?id=FN_AeuOXREuuRMjys5ZOkw" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Introduction to AI in the Data Center</strong><span class="resume-dates">Jan 2024</span></div>
+                  <div class="resume-entry-sub">NVIDIA (Coursera) · <a href="https://coursera.org/verify/XHPEPS8RJZ9E" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Generative AI Essentials: Overview and Impact</strong><span class="resume-dates">Jan 2024</span></div>
+                  <div class="resume-entry-sub">University of Michigan (Coursera) · <a href="https://coursera.org/verify/72V99WRMQFS7" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Fine Tune BERT for Text Classification with TensorFlow</strong><span class="resume-dates">Apr 2023</span></div>
+                  <div class="resume-entry-sub">Coursera Project Network · <a href="https://coursera.org/verify/BSU7LRVCETPG" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>The PyTorch Basics You Need to Start Your ML Projects</strong><span class="resume-dates">Mar 2023</span></div>
+                  <div class="resume-entry-sub">Coursera Project Network · <a href="https://coursera.org/verify/DSDHMT8DBEJK" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Building Towards Computer Use with Anthropic</strong><span class="resume-dates">Jan 2025</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI · <a href="https://learn.deeplearning.ai/accomplishments/dffbefed-6abe-460e-a5ef-a13f7354dac8" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>AI-Powered Software and System Design</strong><span class="resume-dates">Oct 2024</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://www.coursera.org/account/accomplishments/records/1OXABWNQIWDB" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Team Software Engineering with AI</strong><span class="resume-dates">Sep 2024</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://www.coursera.org/account/accomplishments/records/CXOJBW82R65K" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary data-count="3">MLOps &amp; Data</summary>
+              <ul class="cert-entries">
+                <li>
+                  <div class="resume-entry-head"><strong>Machine Learning Engineering for Production (MLOps) Specialization</strong><span class="resume-dates">Mar 2023</span></div>
+                  <div class="resume-entry-sub">DeepLearning.AI (Coursera) · <a href="https://coursera.org/verify/specialization/ZL4L3UM35DBY" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>MLOps Specialization</strong><span class="resume-dates">Dec 2023</span></div>
+                  <div class="resume-entry-sub">Duke University (Coursera) · <a href="https://coursera.org/verify/specialization/B7VEDLQZ7ASZ" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Advanced Data Analytics Professional Certificate</strong><span class="resume-dates">May 2023</span></div>
+                  <div class="resume-entry-sub">Google (Coursera) · <a href="https://coursera.org/verify/professional-cert/XLWBL67NWSKV" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary data-count="4">Cloud, DevOps &amp; Security</summary>
+              <ul class="cert-entries">
+                <li>
+                  <div class="resume-entry-head"><strong>Container Orchestration using Kubernetes</strong><span class="resume-dates">Jun 2023</span></div>
+                  <div class="resume-entry-sub">Coursera Project Network · <a href="https://coursera.org/verify/QAYHN5P69EPJ" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>AWS Cloud Solutions Architect Professional Certificate</strong><span class="resume-dates"></span></div>
+                  <div class="resume-entry-sub">Amazon Web Services (Coursera)</div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Infrastructure as Code with Terraform</strong><span class="resume-dates">Jul 2026</span></div>
+                  <div class="resume-entry-sub">Google Cloud (Coursera) · <a href="https://www.coursera.org/account/accomplishments/records/JY5NK1LFBTTB" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Cybersecurity Professional Certificate</strong><span class="resume-dates">Dec 2023</span></div>
+                  <div class="resume-entry-sub">Google (Coursera) · <a href="https://coursera.org/verify/professional-cert/NRR4GTZ92FGH" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary data-count="2">Web &amp; Full-Stack Development</summary>
+              <ul class="cert-entries">
+                <li>
+                  <div class="resume-entry-head"><strong>Back-End Developer Professional Certificate</strong><span class="resume-dates">Dec 2023</span></div>
+                  <div class="resume-entry-sub">Meta (Coursera) · <a href="https://coursera.org/verify/professional-cert/E8T8VH5T3SHK" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>Front-End Developer Professional Certificate</strong><span class="resume-dates">Dec 2023</span></div>
+                  <div class="resume-entry-sub">Meta (Coursera) · <a href="https://coursera.org/verify/professional-cert/3JMMNQXT55VF" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary data-count="3">Systems &amp; Languages</summary>
+              <ul class="cert-entries">
+                <li>
+                  <div class="resume-entry-head"><strong>Rust Programming Specialization</strong><span class="resume-dates">Dec 2023</span></div>
+                  <div class="resume-entry-sub">Duke University (Coursera) · <a href="https://coursera.org/verify/specialization/JW6HBY4L9UJW" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>PostgreSQL for Everybody Specialization</strong><span class="resume-dates">Sep 2023</span></div>
+                  <div class="resume-entry-sub">University of Michigan (Coursera) · <a href="https://coursera.org/verify/specialization/VH6CBT4A8F6Y" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+                <li>
+                  <div class="resume-entry-head"><strong>GPU Programming Specialization</strong><span class="resume-dates">Feb 2024</span></div>
+                  <div class="resume-entry-sub">Johns Hopkins University (Coursera) · <a href="https://coursera.org/verify/5WN3BY6CTB7U" target="_blank" rel="noopener">Verify</a></div>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+
+        <h3 class="resume-heading">Education</h3>
+        <ul class="resume-entries">
+          <li>
+            <div class="resume-entry-head">
+              <strong>University of Tsukuba (Graduate School)</strong>
+              <span class="resume-dates">Apr 2013 – Mar 2015</span>
+            </div>
+            <div class="resume-entry-sub">Master's Degree, Systems and Information Engineering, Intelligent Interaction Systems · Tsukuba, Ibaraki, Japan</div>
+            <ul>
+              <li>Researched believable AI characters for role-playing games, based on the BDI (belief–desire–intention) agent model</li>
+            </ul>
+          </li>
+          <li>
+            <div class="resume-entry-head">
+              <strong>Marche Polytechnic University</strong>
+              <span class="resume-dates">Jul 2010</span>
+            </div>
+            <div class="resume-entry-sub">Bachelor's Degree, Information and Automation Engineering · Ancona, Marche, Italy</div>
+            <ul>
+              <li>Thesis: Study of a Software Agent Platform for Healthcare Information Systems (2010, Faculty of Engineering)</li>
+            </ul>
+          </li>
+        </ul>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

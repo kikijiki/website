@@ -1,0 +1,52 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>Bindless descriptors</h1><p class="sub">Device-owned heaps give stable indices; shaders index straight in</p><svg viewBox="0 0 1120 600">
+<defs><marker id="a" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path class="arrow" d="M0,1 L10,6 L0,11z"/></marker></defs>
+<text class="title dim" x="0" y="16">Bind once, index anywhere</text>
+<rect class="box amber" x="0" y="34" width="260" height="222" rx="10"/>
+<text class="title amber" x="20" y="64">Views</text>
+<rect class="box" x="20" y="84" width="220" height="44" rx="8"/><text x="130" y="112" text-anchor="middle">Buffer::View</text>
+<rect class="box" x="20" y="140" width="220" height="44" rx="8"/><text x="130" y="168" text-anchor="middle">Image::View</text>
+<rect class="box" x="20" y="196" width="220" height="44" rx="8"/><text x="130" y="224" text-anchor="middle">Sampler::View</text>
+<line class="edge" x1="262" y1="139" x2="358" y2="139" marker-end="url(#a)"/>
+<text class="dim" x="310" y="126" text-anchor="middle">Bind</text>
+<rect class="box teal" x="360" y="34" width="420" height="210" rx="10"/>
+<text class="title teal" x="380" y="64">Binder (owned by Device)</text>
+<text class="dim" x="380" y="96">samplers heap</text>
+<g>
+<rect class="box" x="380" y="106" width="60" height="40" rx="6"/><text x="410" y="132" text-anchor="middle">0</text>
+<rect class="box" x="450" y="106" width="60" height="40" rx="6"/><text x="480" y="132" text-anchor="middle">1</text>
+<rect class="box" x="520" y="106" width="60" height="40" rx="6"/><text x="550" y="132" text-anchor="middle">2</text>
+<text class="dim" x="620" y="132" text-anchor="middle">…</text>
+</g>
+<text class="dim" x="380" y="176">buffer + image heap</text>
+<g>
+<rect class="box" x="380" y="186" width="60" height="40" rx="6"/><text x="410" y="212" text-anchor="middle">0</text>
+<rect class="box" x="450" y="186" width="60" height="40" rx="6"/><text x="480" y="212" text-anchor="middle">1</text>
+<rect class="box" x="520" y="186" width="60" height="40" rx="6"/><text x="550" y="212" text-anchor="middle">2</text>
+<text class="dim" x="620" y="212" text-anchor="middle">…</text>
+</g>
+<text class="dim" x="760" y="132" text-anchor="end">max 2048</text>
+<text class="dim" x="760" y="212" text-anchor="end">max 1,000,000</text>
+<line class="edge" x1="782" y1="139" x2="858" y2="139" marker-end="url(#a)"/>
+<text class="dim" x="820" y="126" text-anchor="middle">index</text>
+<rect class="box violet" x="860" y="34" width="260" height="210" rx="10"/>
+<text class="title violet" x="880" y="64">Shader</text>
+<text x="880" y="106">srvBuf[pc.data.x]</text>
+<text x="880" y="136">srvTex2D[colIdx]</text>
+<text x="880" y="166">samplers[i]</text>
+<text class="dim" x="880" y="204">pc: uint4, 16 bytes</text>
+<text class="dim" x="880" y="226">Layout.hlsli</text>
+<text class="title dim" x="0" y="296">Reuse is deferred</text>
+<rect class="box rose" x="0" y="316" width="240" height="90" rx="10"/><text x="120" y="356" text-anchor="middle">View destroyed</text><text class="dim" x="120" y="380" text-anchor="middle">Unbind</text>
+<line class="edge" x1="242" y1="361" x2="298" y2="361" marker-end="url(#a)"/>
+<rect class="box amber" x="300" y="316" width="240" height="90" rx="10"/><text x="420" y="356" text-anchor="middle">Slot queued</text><text class="dim" x="420" y="380" text-anchor="middle">may still be in use</text>
+<line class="edge" x1="542" y1="361" x2="598" y2="361" marker-end="url(#a)"/>
+<rect class="box blue" x="600" y="316" width="240" height="90" rx="10"/><text x="720" y="356" text-anchor="middle">Frames retire</text><text class="dim" x="720" y="380" text-anchor="middle">RetireFrame</text>
+<line class="edge" x1="842" y1="361" x2="898" y2="361" marker-end="url(#a)"/>
+<rect class="box teal" x="900" y="316" width="220" height="90" rx="10"/><text x="1010" y="356" text-anchor="middle">Index reused</text><text class="dim" x="1010" y="380" text-anchor="middle">free list</text>
+<text class="dim" x="0" y="436">RenderContext registers frame slots with the Binder</text>
+<text class="title dim" x="0" y="486">Same logical layout, per backend</text>
+<rect class="box teal" x="0" y="506" width="550" height="94" rx="10"/>
+<text class="title teal" x="20" y="538">Vulkan</text><text x="20" y="566">one descriptor set, update-after-bind</text>
+<rect class="box blue" x="570" y="506" width="550" height="94" rx="10"/>
+<text class="title blue" x="590" y="538">DirectX 12</text><text x="590" y="566">2 heaps + shared root signature</text>
+</svg></main>

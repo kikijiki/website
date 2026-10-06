@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>Scan the whole $MFT in memory</h1><p class="sub">Volume, Mft::new, files(), FileInfo</p><svg viewBox="0 0 1120 560">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path class="arrow" d="M0,0L10,4L0,8z"/></marker></defs>
+<g text-anchor="middle">
+<rect class="box blue" x="0" y="0" width="230" height="150" rx="8"/>
+<text class="title" x="115" y="40">Volume::new</text>
+<text class="dim" x="115" y="76">needs elevation</text><text class="dim" x="115" y="98">read boot sector</text><text class="dim" x="115" y="120">find $MFT</text>
+<rect class="box amber" x="297" y="0" width="270" height="150" rx="8"/>
+<text class="title" x="432" y="40">Mft::new</text>
+<text class="dim" x="432" y="76">read $MFT $DATA</text><text class="dim" x="432" y="98">read $MFT bitmap</text><text class="dim" x="432" y="120">fixup every record</text>
+<rect class="box teal" x="634" y="0" width="200" height="150" rx="8"/>
+<text class="title" x="734" y="40">mft.files()</text>
+<text class="dim" x="734" y="76">records 24 and up</text><text class="dim" x="734" y="98">in-use bit set</text><text class="dim" x="734" y="120">not extension</text>
+<rect class="box violet" x="901" y="0" width="219" height="150" rx="8"/>
+<text class="title" x="1010" y="40">FileInfo::new</text>
+<text class="dim" x="1010" y="76">name, path, size</text><text class="dim" x="1010" y="98">is_directory</text><text class="dim" x="1010" y="120">3 timestamps</text>
+<path class="edge" d="M230 75H295" marker-end="url(#a)"/>
+<path class="edge" d="M567 75H632" marker-end="url(#a)"/>
+<path class="edge" d="M834 75H899" marker-end="url(#a)"/>
+
+<rect class="box amber" x="297" y="190" width="270" height="70" rx="8"/>
+<text class="title" x="432" y="220">Vec&lt;u8&gt; in RAM</text><text class="dim" x="432" y="243">all records, read-only</text>
+<path class="edge" d="M432 150V188" marker-end="url(#a)"/>
+<path class="edge" d="M567 225H734V152" marker-end="url(#a)"/>
+
+<text class="title" x="0" y="310" text-anchor="start">FileInfo builds the path</text>
+<text class="dim" x="260" y="310" text-anchor="start">follow parent references up to the root</text>
+
+<rect class="box teal" x="0" y="330" width="200" height="90" rx="8"/>
+<text class="title" x="100" y="368">file</text><text class="dim" x="100" y="392">$FILE_NAME</text>
+<rect class="box teal" x="290" y="330" width="200" height="90" rx="8"/>
+<text class="title" x="390" y="368">parent</text><text class="dim" x="390" y="392">$FILE_NAME</text>
+<rect class="box teal" x="580" y="330" width="200" height="90" rx="8"/>
+<text class="title" x="680" y="368">parent</text><text class="dim" x="680" y="392">$FILE_NAME</text>
+<rect class="box rose" x="870" y="330" width="250" height="90" rx="8"/>
+<text class="title" x="995" y="368">root #5</text><text class="dim" x="995" y="392">stop</text>
+<path class="edge" d="M200 375H288" marker-end="url(#a)"/>
+<path class="edge" d="M490 375H578" marker-end="url(#a)"/>
+<path class="edge" d="M780 375H868" marker-end="url(#a)"/>
+<text class="dim" x="245" y="360">parent</text>
+<path class="edge" d="M995 420V450H100V480" marker-end="url(#a)"/>
+<rect class="box violet" x="0" y="480" width="1120" height="60" rx="8"/>
+<text class="title" x="560" y="517">volume path + components + name = path</text>
+</g></svg></main>

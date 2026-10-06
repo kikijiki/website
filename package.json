@@ -1,0 +1,11 @@
+{
+  "name": "website",
+  "private": true,
+  "scripts": {
+    "dev": "bun scripts/serve.mjs",
+    "serve": "bun scripts/serve.mjs",
+    "combeanie-media": "bun scripts/combeanie-media.mjs",
+    "render-diagrams": "bun scripts/render-diagrams.mjs",
+    "mfw-screenshots": "bun scripts/mfw-screenshots.mjs"
+  }
+}

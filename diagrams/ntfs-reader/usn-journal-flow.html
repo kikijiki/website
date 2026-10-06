@@ -1,0 +1,37 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>USN journal reader</h1><p class="sub">Journal::new with JournalOptions, then read()</p><svg viewBox="0 0 1120 600">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path class="arrow" d="M0,0L10,4L0,8z"/></marker></defs>
+<g text-anchor="middle">
+<rect class="box blue" x="0" y="0" width="340" height="260" rx="8"/>
+<text class="title" x="170" y="34">JournalOptions</text>
+<text class="teal" x="170" y="80">reason_mask</text><text class="dim" x="170" y="102">which events (default all)</text>
+<text class="amber" x="170" y="148">next_usn</text><text class="dim" x="170" y="170">First | Next | Custom(i64)</text>
+<text class="violet" x="170" y="216">max_history_size</text><text class="dim" x="170" y="238">Unlimited | Limited(n)</text>
+
+<rect class="box amber" x="410" y="90" width="280" height="80" rx="8"/>
+<text class="title" x="550" y="124">Journal::new</text><text class="dim" x="550" y="148">query the volume's journal</text>
+<path class="edge" d="M340 130H408" marker-end="url(#a)"/>
+
+<rect class="box teal" x="760" y="90" width="360" height="80" rx="8"/>
+<text class="title" x="940" y="124">journal.read()</text><text class="dim" x="940" y="148">Vec&lt;UsnRecord&gt;</text>
+<path class="edge" d="M690 130H758" marker-end="url(#a)"/>
+
+<rect class="box teal" x="760" y="200" width="360" height="160" rx="8"/>
+<text class="title" x="940" y="230">UsnRecord</text>
+<text class="dim" x="940" y="262">usn, timestamp</text><text class="dim" x="940" y="284">file_id, parent_id</text><text class="dim" x="940" y="306">reason, path</text>
+<path class="edge" d="M940 170V198" marker-end="url(#a)"/>
+
+<rect class="box violet" x="410" y="230" width="280" height="130" rx="8"/>
+<text class="title" x="550" y="262">history</text>
+<text class="dim" x="550" y="292">rename old name</text><text class="dim" x="550" y="314">hard link change</text><text class="dim" x="550" y="336">reparse point change</text>
+<path class="edge" d="M760 290H692" marker-end="url(#a)"/>
+<text class="dim" x="726" y="278">kept</text>
+
+<path class="edge" d="M550 360V420" marker-end="url(#a)"/>
+<text class="dim" x="565" y="396" text-anchor="start">new-name record</text>
+
+<rect class="box rose" x="0" y="430" width="1120" height="150" rx="8"/>
+<text class="title" x="560" y="466">match_rename(record)</text>
+<text class="dim" x="560" y="496">same file_id, earlier usn</text>
+<text class="dim" x="560" y="524">returns the old path</text>
+<text class="dim" x="560" y="552">renamed files get both names</text>
+</g></svg></main>

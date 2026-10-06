@@ -1,0 +1,68 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>From model code to GPU</h1><p class="sub">One graph, three backends, one host call per token</p>
+<svg viewBox="0 0 1120 1010"><defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="arrow" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+<rect class="box teal" x="320" y="10" width="480" height="64" rx="10"/>
+<text class="title teal" x="560.0" y="38" text-anchor="middle">Model code (Rust)</text>
+<text class="dim" x="560.0" y="62" text-anchor="middle">Builder + traced handles</text>
+<path class="edge" d="M560 74 L560 104" marker-end="url(#a)"/>
+<rect class="box teal" x="320" y="104" width="480" height="64" rx="10"/>
+<text class="title teal" x="560.0" y="132" text-anchor="middle">Graph IR</text>
+<text class="dim" x="560.0" y="156" text-anchor="middle">flat SSA: OpKind + inputs -> ValueId</text>
+<path class="edge" d="M560 168 L560 198" marker-end="url(#a)"/>
+<rect class="box teal" x="200" y="198" width="720" height="64" rx="10"/>
+<text class="title teal" x="560.0" y="226" text-anchor="middle">Compile: graph passes</text>
+<text class="dim" x="560.0" y="250" text-anchor="middle">canonicalize · CSE · RoPE/attention · DCE · packed · legalize · fuse · tile · flash</text>
+<path class="edge" d="M560 262 L560 292" marker-end="url(#a)"/>
+<rect class="box teal" x="200" y="292" width="720" height="86" rx="10"/>
+<text class="title teal" x="560.0" y="320" text-anchor="middle">Per-eqn planning: kernel request -> KernelChoice</text>
+<text class="dim" x="560.0" y="344" text-anchor="middle">Generated · Imported · NoDispatch · Chunked</text>
+<text class="dim" x="560.0" y="366" text-anchor="middle">plans: Compute · ComputeMeta · ComputeChunks · Alias · View · Collective</text>
+<path class="edge" d="M450 378 L310 396" marker-end="url(#a)"/>
+<path class="edge" d="M670 378 L810 396" marker-end="url(#a)"/>
+<rect class="box blue" x="100" y="396" width="420" height="84" rx="10"/>
+<text class="title blue" x="310.0" y="424" text-anchor="middle">pootc: MIR import</text>
+<text class="dim" x="310.0" y="448" text-anchor="middle">Rust #[kernel] -> Stable MIR -> .kir.json</text>
+<rect class="box blue" x="600" y="396" width="420" height="84" rx="10"/>
+<text class="title blue" x="810.0" y="424" text-anchor="middle">poot-kernelgen</text>
+<text class="dim" x="810.0" y="448" text-anchor="middle">Body built from shape params at runtime</text>
+<path class="edge" d="M310 480 L450 520" marker-end="url(#a)"/>
+<path class="edge" d="M810 480 L670 520" marker-end="url(#a)"/>
+<rect class="box blue" x="320" y="520" width="480" height="64" rx="10"/>
+<text class="title blue" x="560.0" y="548" text-anchor="middle">Kernel IR (Body)</text>
+<text class="dim" x="560.0" y="572" text-anchor="middle">basic blocks · WMMA ops · LDS arrays</text>
+<path class="edge" d="M560 584 L560 614" marker-end="url(#a)"/>
+<rect class="box" x="270" y="614" width="580" height="66" rx="10"/>
+<text class="title" x="560.0" y="642" text-anchor="middle">emit_llvm_ir(body, target)</text>
+<text class="dim" x="560.0" y="666" text-anchor="middle">one shared emitter</text>
+<path class="edge" d="M400 680 L190 716" marker-end="url(#a)"/>
+<rect class="box violet" x="20" y="716" width="340" height="100" rx="10"/>
+<text class="title violet" x="190.0" y="744" text-anchor="middle">Vulkan / SPIR-V</text>
+<text class="dim" x="190.0" y="768" text-anchor="middle">LLVM IR -> llc -> .spv</text>
+<text class="dim" x="190.0" y="790" text-anchor="middle">barrier fixup -> wgpu</text>
+<path class="edge" d="M190 816 L190 850" marker-end="url(#a)"/>
+<rect class="box violet" x="20" y="850" width="340" height="66" rx="10"/>
+<text x="190" y="878" text-anchor="middle">wgpu: cached re-encode,</text>
+<text x="190" y="900" text-anchor="middle">one submit per token</text>
+<path class="edge" d="M190 916 L450 952" marker-end="url(#a)"/>
+<path class="edge" d="M560 680 L560 716" marker-end="url(#a)"/>
+<rect class="box amber" x="390" y="716" width="340" height="100" rx="10"/>
+<text class="title amber" x="560.0" y="744" text-anchor="middle">NVIDIA / PTX</text>
+<text class="dim" x="560.0" y="768" text-anchor="middle">LLVM IR -> llc -> .ptx</text>
+<text class="dim" x="560.0" y="790" text-anchor="middle">CUDA JIT -> .cubin</text>
+<path class="edge" d="M560 816 L560 850" marker-end="url(#a)"/>
+<rect class="box amber" x="390" y="850" width="340" height="66" rx="10"/>
+<text x="560" y="878" text-anchor="middle">CUDA graph capture,</text>
+<text x="560" y="900" text-anchor="middle">one launch per token</text>
+<path class="edge" d="M560 916 L560 952" marker-end="url(#a)"/>
+<path class="edge" d="M720 680 L930 716" marker-end="url(#a)"/>
+<rect class="box rose" x="760" y="716" width="340" height="100" rx="10"/>
+<text class="title rose" x="930.0" y="744" text-anchor="middle">AMD / ROCm</text>
+<text class="dim" x="930.0" y="768" text-anchor="middle">LLVM IR -> amdclang</text>
+<text class="dim" x="930.0" y="790" text-anchor="middle">-> .hsaco -> HSA load</text>
+<path class="edge" d="M930 816 L930 850" marker-end="url(#a)"/>
+<rect class="box rose" x="760" y="850" width="340" height="66" rx="10"/>
+<text x="930" y="878" text-anchor="middle">HSA: batched AQL,</text>
+<text x="930" y="900" text-anchor="middle">one doorbell per token</text>
+<path class="edge" d="M930 916 L670 952" marker-end="url(#a)"/>
+<rect class="box teal" x="380" y="952" width="360" height="50" rx="10"/>
+<text class="title teal" x="560.0" y="982" text-anchor="middle">Output tensor: token logits</text>
+</svg></main>

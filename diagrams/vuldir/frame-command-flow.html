@@ -1,0 +1,46 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../base.css"><main id="d"><h1>Frames and command buffers</h1><p class="sub">Per-context frame ring; virtual resource states commit on submit</p><svg viewBox="0 0 1120 600">
+<defs><marker id="a" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path class="arrow" d="M0,1 L10,6 L0,11z"/></marker></defs>
+<rect class="box amber" x="0" y="0" width="660" height="270" rx="10"/>
+<text class="title amber" x="20" y="32">RenderContext</text>
+<text class="dim" x="640" y="32" text-anchor="end">ring of maxFramesInFlight slots</text>
+<rect class="box" x="20" y="52" width="300" height="200" rx="8"/><text class="title" x="40" y="80">slot 0</text>
+<rect class="box" x="340" y="52" width="300" height="200" rx="8"/><text class="title" x="360" y="80">slot 1</text>
+<g>
+<rect class="box teal" x="40" y="94" width="260" height="34" rx="6"/><text x="52" y="117">Graphics pool + cmd</text>
+<rect class="box teal" x="40" y="136" width="260" height="34" rx="6"/><text x="52" y="159">Compute pool + cmd</text>
+<rect class="box teal" x="40" y="178" width="260" height="34" rx="6"/><text x="52" y="201">Copy pool + cmd</text>
+<text class="dim" x="52" y="238">+ completion fence</text>
+<rect class="box teal" x="360" y="94" width="260" height="34" rx="6"/><text x="372" y="117">Graphics pool + cmd</text>
+<rect class="box teal" x="360" y="136" width="260" height="34" rx="6"/><text x="372" y="159">Compute pool + cmd</text>
+<rect class="box teal" x="360" y="178" width="260" height="34" rx="6"/><text x="372" y="201">Copy pool + cmd</text>
+<text class="dim" x="372" y="238">+ completion fence</text>
+</g>
+<line class="edge" x1="662" y1="135" x2="718" y2="135" marker-end="url(#a)"/>
+<text class="dim" x="690" y="122" text-anchor="middle">Submit</text>
+<rect class="box violet" x="720" y="0" width="400" height="270" rx="10"/>
+<text class="title violet" x="740" y="32">Device (shared)</text>
+<text class="dim" x="740" y="56">synchronized internally</text>
+<rect class="box" x="740" y="76" width="360" height="40" rx="8"/><text x="760" y="102">Graphics queue</text>
+<rect class="box" x="740" y="126" width="360" height="40" rx="8"/><text x="760" y="152">Compute queue</text>
+<rect class="box" x="740" y="176" width="360" height="40" rx="8"/><text x="760" y="202">Copy queue</text>
+<text class="dim" x="740" y="245">contexts record and submit in parallel</text>
+<text class="title dim" x="0" y="316">CommandBuffer</text>
+<rect class="box blue" x="0" y="336" width="220" height="60" rx="10"/><text x="110" y="373" text-anchor="middle">Ready</text>
+<line class="edge" x1="222" y1="366" x2="298" y2="366" marker-end="url(#a)"/>
+<rect class="box blue" x="300" y="336" width="220" height="60" rx="10"/><text x="410" y="373" text-anchor="middle">Recording</text>
+<line class="edge" x1="522" y1="366" x2="598" y2="366" marker-end="url(#a)"/>
+<rect class="box blue" x="600" y="336" width="220" height="60" rx="10"/><text x="710" y="373" text-anchor="middle">Closed</text>
+<path class="edge" d="M820,366 H860 V420 H110 V398" marker-end="url(#a)"/>
+<text class="dim" x="480" y="438" text-anchor="middle">after submit</text>
+<rect class="box violet" x="0" y="450" width="540" height="150" rx="10"/>
+<text class="title violet" x="20" y="482">While recording</text>
+<text x="20" y="518">AddBarrier updates local</text>
+<text x="20" y="544">virtual resource states</text>
+<text class="dim" x="20" y="576">abandon = global state untouched</text>
+<line class="edge" x1="542" y1="525" x2="578" y2="525" marker-end="url(#a)"/>
+<rect class="box teal" x="580" y="450" width="540" height="150" rx="10"/>
+<text class="title teal" x="600" y="482">On Submit</text>
+<text x="600" y="518">initial states still current?</text>
+<text x="600" y="544">yes: commit final states atomically</text>
+<text class="dim" x="600" y="576">stale submissions are rejected</text>
+</svg></main>
