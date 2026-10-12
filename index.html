@@ -77,6 +77,45 @@
           <li>
             <details>
               <summary>
+                <pre class="project-icon" aria-hidden="true">┏━━━━━┓
+┃ ╭─╮ ┃
+┃●┤v├●┃
+┃ ╰─╯ ┃
+┗━━━━━┛</pre>
+                <div class="project-summary">
+                  <h3>mfw <span class="project-links"><a href="https://github.com/kikijiki/mfw" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>A local-first orchestrator that runs fleets of coding agents across your projects, from goals to verified, merged work.</p>
+                  <small>typescript · multi-agent orchestration · mcp · acp · git worktrees</small>
+                </div>
+              </summary>
+              <div class="project-details">
+                <ul class="project-highlights">
+                  <li><strong>Board (<code>mfwb</code>):</strong> a CLI and library that keeps project work as plain markdown files in your repo. Custom document types, dependencies checked for cycles, lock-safe claiming for parallel agents.</li>
+                  <li><strong>Orchestration:</strong> a service that runs a fleet of agents across projects. A per-project brain plans work, picks the harness and model, runs parallel or competing attempts, and settles results, with every decision audited and overridable.</li>
+                  <li><strong>Fleet:</strong> Claude Code, Codex CLI and others in isolated git worktrees, locally or on remote hosts. Verified before an autonomous merge, within budgets, rerouted when a subscription runs out.</li>
+                  <li><strong>UI:</strong> a local web app: lane board, flow view, inspector, docs and repo browsers, fleet usage and spend. Works on a phone.</li>
+                  <li>Also: host resource coordinator, RunPod and OpenRouter providers, triggers, MCP server.</li>
+                </ul>
+                <div class="project-gallery" id="mfw-gallery">
+                  <a id="mfw-1" href="#mfw-1"><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects" loading="lazy"></a>
+                  <a id="mfw-2" href="#mfw-2"><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane" loading="lazy"></a>
+                  <a id="mfw-3" href="#mfw-3"><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board" loading="lazy"></a>
+                  <a id="mfw-4" href="#mfw-4"><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top" loading="lazy"></a>
+                  <a id="mfw-5" href="#mfw-5"><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets" loading="lazy"></a>
+                  <a id="mfw-6" href="#mfw-6"><img src="/projects/mfw/settings.png" alt="mfw project settings" loading="lazy"></a>
+                </div>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-1"><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-2"><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-3"><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-4"><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-5"><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets"></a>
+                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-6"><img src="/projects/mfw/settings.png" alt="mfw project settings"></a>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
                 <pre class="project-icon" aria-hidden="true">┌─────┐
 │C:\  │
 │└─┬─■│
@@ -139,54 +178,6 @@
                 <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout"></a>
                 <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse"></a>
                 <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit"></a>
-              </div>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                <pre class="project-icon" aria-hidden="true">┏━━━━━┓
-┃ ╭─╮ ┃
-┃●┤v├●┃
-┃ ╰─╯ ┃
-┗━━━━━┛</pre>
-                <div class="project-summary">
-                  <h3>mfw <span class="project-links"><a href="https://github.com/kikijiki/mfw" target="_blank" rel="noopener">repo</a></span></h3>
-                  <p>A local-first autonomous project orchestrator that drives coding agents from goals to verified work.</p>
-                  <small>typescript · ai agents · mcp · acp · spec-driven · runpod</small>
-                </div>
-              </summary>
-              <div class="project-details">
-                <ul class="project-highlights">
-                  <li><strong>Board:</strong> a command-line tool and library that manages project work as plain markdown files in your repo instead of a database. A config file defines your own document types (tasks, specs, ADRs, anything), each with its own schema: typed fields with allowed values and defaults, links between documents such as dependencies (checked for cycles), an id scheme, and a folder layout. Claiming a task is lock-safe, so several agents can work in parallel.</li>
-                  <li><strong>Service:</strong> an orchestrator built on the board. It schedules tasks, runs coding agents (Claude Code, Codex CLI, and other subscription-based ones) in isolated git worktrees, and verifies the results before an autonomous merge to main.</li>
-                  <li><strong>UI:</strong> a web app on top of the service, with a kanban board and a live session viewer to watch and steer any running agent.</li>
-                  <li>Also: a host-wide CPU/RAM/GPU coordinator, RunPod and OpenRouter control planes, and project triggers.</li>
-                </ul>
-                <div class="project-gallery" id="mfw-gallery">
-                  <a id="mfw-1" href="#mfw-1"><img src="/projects/mfw/board.png" alt="mfw task board with a column per status" loading="lazy"></a>
-                  <a id="mfw-2" href="#mfw-2"><img src="/projects/mfw/inbox.png" alt="mfw inbox" loading="lazy"></a>
-                  <a id="mfw-3" href="#mfw-3"><img src="/projects/mfw/review.png" alt="mfw review queue" loading="lazy"></a>
-                  <a id="mfw-4" href="#mfw-4"><img src="/projects/mfw/adrs.png" alt="mfw ADR list and editor" loading="lazy"></a>
-                  <a id="mfw-5" href="#mfw-5"><img src="/projects/mfw/runs.png" alt="mfw agent runs" loading="lazy"></a>
-                  <a id="mfw-6" href="#mfw-6"><img src="/projects/mfw/triggers.png" alt="mfw project triggers" loading="lazy"></a>
-                  <a id="mfw-7" href="#mfw-7"><img src="/projects/mfw/files.png" alt="mfw project files" loading="lazy"></a>
-                  <a id="mfw-8" href="#mfw-8"><img src="/projects/mfw/settings.png" alt="mfw project settings" loading="lazy"></a>
-                  <a id="mfw-9" href="#mfw-9"><img src="/projects/mfw/resources.png" alt="mfw host resource coordinator" loading="lazy"></a>
-                  <a id="mfw-10" href="#mfw-10"><img src="/projects/mfw/runpod.png" alt="mfw RunPod control plane" loading="lazy"></a>
-                  <a id="mfw-11" href="#mfw-11"><img src="/projects/mfw/openrouter.png" alt="mfw OpenRouter control plane" loading="lazy"></a>
-                </div>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-1"><img src="/projects/mfw/board.png" alt="mfw task board with a column per status"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-2"><img src="/projects/mfw/inbox.png" alt="mfw inbox"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-3"><img src="/projects/mfw/review.png" alt="mfw review queue"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-4"><img src="/projects/mfw/adrs.png" alt="mfw ADR list and editor"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-5"><img src="/projects/mfw/runs.png" alt="mfw agent runs"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-6"><img src="/projects/mfw/triggers.png" alt="mfw project triggers"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-7"><img src="/projects/mfw/files.png" alt="mfw project files"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-8"><img src="/projects/mfw/settings.png" alt="mfw project settings"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-9"><img src="/projects/mfw/resources.png" alt="mfw host resource coordinator"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-10"><img src="/projects/mfw/runpod.png" alt="mfw RunPod control plane"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-11"><img src="/projects/mfw/openrouter.png" alt="mfw OpenRouter control plane"></a>
               </div>
             </details>
           </li>
