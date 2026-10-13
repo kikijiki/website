@@ -52,6 +52,12 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="poot-gallery">
+                  <label for="lb-poot-1"><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends" loading="lazy"></label>
+                  <label for="lb-poot-2"><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes" loading="lazy"></label>
+                  <label for="lb-poot-3"><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends" loading="lazy"></label>
+                  <label for="lb-poot-4"><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li>Forward pass traced once into a backend-neutral graph of primitive tensor ops, not opaque hand-written kernels.</li>
                   <li>Fused regions get kernels generated for them, while imported Rust kernels cover the shapes the generator does not (decode GEMV, flash fallback, gathers).</li>
@@ -61,27 +67,23 @@
                   <li>One executor contract shared by the wgpu, ROCm and PTX backends, each checked against a CPU oracle.</li>
                   <li>Serving capabilities: an OpenAI-compatible HTTP API with embeddings, reranking, LoRA adapter management and metrics; text generation is being reconnected to the new single-sequence driver.</li>
                 </ul>
-                <div class="project-gallery" id="poot-gallery">
-                  <a id="poot-1" href="#poot-1"><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends" loading="lazy"></a>
-                  <a id="poot-2" href="#poot-2"><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes" loading="lazy"></a>
-                  <a id="poot-3" href="#poot-3"><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends" loading="lazy"></a>
-                  <a id="poot-4" href="#poot-4"><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN" loading="lazy"></a>
-                </div>
-                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-1"><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends"></a>
-                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-2"><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes"></a>
-                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-3"><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends"></a>
-                <a href="#poot-gallery" class="lightbox" id="lightbox-poot-4"><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-poot" id="lb-poot-1" class="lb-radio" aria-label="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends"><div class="lightbox" id="lightbox-poot-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/poot/compilation-pipeline.png" alt="Pipeline from model code through graph IR, optimization, planning and kernel IR to SPIR-V, PTX and ROCm backends"><label class="lb-prev" for="lb-poot-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-poot-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-poot" id="lb-poot-2" class="lb-radio" aria-label="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes"><div class="lightbox" id="lightbox-poot-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/poot/model-tracing.png" alt="A model written as a Rust function, traced into a graph IR that the CPU oracle or the planner consumes"><label class="lb-prev" for="lb-poot-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-poot-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-poot" id="lb-poot-3" class="lb-radio" aria-label="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends"><div class="lightbox" id="lightbox-poot-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/poot/capture-replay.png" alt="Per-token slots feeding one captured decode graph, replayed by the PTX, wgpu and ROCm backends"><label class="lb-prev" for="lb-poot-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-poot-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-poot" id="lb-poot-4" class="lb-radio" aria-label="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN"><div class="lightbox" id="lightbox-poot-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/poot/rust-kernels.png" alt="One Rust kernel imported through pootc and kernel IR and lowered to SPIR-V, PTX and AMDGCN"><label class="lb-prev" for="lb-poot-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-poot-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
           <li>
             <details>
               <summary>
-                <pre class="project-icon" aria-hidden="true">┏━━━━━┓
-┃ ╭─╮ ┃
-┃●┤v├●┃
-┃ ╰─╯ ┃
-┗━━━━━┛</pre>
+                <pre class="project-icon" aria-hidden="true">┌─────┐
+│■■□  │
+│■□ □ │
+│■ □□ │
+└─────┘</pre>
                 <div class="project-summary">
                   <h3>mfw <span class="project-links"><a href="https://github.com/kikijiki/mfw" target="_blank" rel="noopener">repo</a></span></h3>
                   <p>A local-first orchestrator that runs fleets of coding agents across your projects, from goals to verified, merged work.</p>
@@ -89,6 +91,14 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="mfw-gallery">
+                  <label for="lb-mfw-1"><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects" loading="lazy"></label>
+                  <label for="lb-mfw-2"><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane" loading="lazy"></label>
+                  <label for="lb-mfw-3"><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board" loading="lazy"></label>
+                  <label for="lb-mfw-4"><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top" loading="lazy"></label>
+                  <label for="lb-mfw-5"><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets" loading="lazy"></label>
+                  <label for="lb-mfw-6"><img src="/projects/mfw/settings.png" alt="mfw project settings" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li><strong>Board (<code>mfwb</code>):</strong> a CLI and library that keeps project work as plain markdown files in your repo. Custom document types, dependencies checked for cycles, lock-safe claiming for parallel agents.</li>
                   <li><strong>Orchestration:</strong> a service that runs a fleet of agents across projects. A per-project brain plans work, picks the harness and model, runs parallel or competing attempts, and settles results, with every decision audited and overridable.</li>
@@ -96,20 +106,14 @@
                   <li><strong>UI:</strong> a local web app: lane board, flow view, inspector, docs and repo browsers, fleet usage and spend. Works on a phone.</li>
                   <li>Also: host resource coordinator, RunPod and OpenRouter providers, triggers, MCP server.</li>
                 </ul>
-                <div class="project-gallery" id="mfw-gallery">
-                  <a id="mfw-1" href="#mfw-1"><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects" loading="lazy"></a>
-                  <a id="mfw-2" href="#mfw-2"><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane" loading="lazy"></a>
-                  <a id="mfw-3" href="#mfw-3"><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board" loading="lazy"></a>
-                  <a id="mfw-4" href="#mfw-4"><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top" loading="lazy"></a>
-                  <a id="mfw-5" href="#mfw-5"><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets" loading="lazy"></a>
-                  <a id="mfw-6" href="#mfw-6"><img src="/projects/mfw/settings.png" alt="mfw project settings" loading="lazy"></a>
-                </div>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-1"><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-2"><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-3"><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-4"><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-5"><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets"></a>
-                <a href="#mfw-gallery" class="lightbox" id="lightbox-mfw-6"><img src="/projects/mfw/settings.png" alt="mfw project settings"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-mfw" id="lb-mfw-1" class="lb-radio" aria-label="mfw home: what needs you, and agents live across projects"><div class="lightbox" id="lightbox-mfw-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/home.png" alt="mfw home: what needs you, and agents live across projects"><label class="lb-prev" for="lb-mfw-6" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-mfw" id="lb-mfw-2" class="lb-radio" aria-label="mfw board as lanes, one status per lane"><div class="lightbox" id="lightbox-mfw-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/board.png" alt="mfw board as lanes, one status per lane"><label class="lb-prev" for="lb-mfw-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-mfw" id="lb-mfw-3" class="lb-radio" aria-label="mfw task open in the inspector next to the board"><div class="lightbox" id="lightbox-mfw-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/board-inspector.png" alt="mfw task open in the inspector next to the board"><label class="lb-prev" for="lb-mfw-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-mfw" id="lb-mfw-4" class="lb-radio" aria-label="mfw flow: the task tree and run timeline with the brain on top"><div class="lightbox" id="lightbox-mfw-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/flow.png" alt="mfw flow: the task tree and run timeline with the brain on top"><label class="lb-prev" for="lb-mfw-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-5" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-mfw" id="lb-mfw-5" class="lb-radio" aria-label="mfw fleet: hosts, subscriptions, harnesses and budgets"><div class="lightbox" id="lightbox-mfw-5"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/fleet.png" alt="mfw fleet: hosts, subscriptions, harnesses and budgets"><label class="lb-prev" for="lb-mfw-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-6" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-mfw" id="lb-mfw-6" class="lb-radio" aria-label="mfw project settings"><div class="lightbox" id="lightbox-mfw-6"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/mfw/settings.png" alt="mfw project settings"><label class="lb-prev" for="lb-mfw-5" aria-label="Previous image">‹</label><label class="lb-next" for="lb-mfw-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
@@ -128,6 +132,11 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="ntfs-reader-gallery">
+                  <label for="lb-ntfs-reader-1"><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes" loading="lazy"></label>
+                  <label for="lb-ntfs-reader-2"><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references" loading="lazy"></label>
+                  <label for="lb-ntfs-reader-3"><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li>$MFT read straight off the raw volume into memory and parsed in one pass, not through Windows file-enumeration APIs.</li>
                   <li>Full-volume iteration with resolved paths in 3.9s, down from 12.3s uncached.</li>
@@ -136,14 +145,48 @@
                   <li>Deleted files supported: resolve their old paths, read their data back, and check whether it survived.</li>
                   <li>Memory-bounded modes for huge volumes: stream the table in chunks, load a compact form that uses 30 to 70 percent less memory, or cap the path cache.</li>
                 </ul>
-                <div class="project-gallery" id="ntfs-reader-gallery">
-                  <a id="ntfs-reader-1" href="#ntfs-reader-1"><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes" loading="lazy"></a>
-                  <a id="ntfs-reader-2" href="#ntfs-reader-2"><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references" loading="lazy"></a>
-                  <a id="ntfs-reader-3" href="#ntfs-reader-3"><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history" loading="lazy"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-ntfs-reader" id="lb-ntfs-reader-1" class="lb-radio" aria-label="From the raw volume and boot sector to an MFT file record and its attributes"><div class="lightbox" id="lightbox-ntfs-reader-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes"><label class="lb-prev" for="lb-ntfs-reader-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-ntfs-reader-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-ntfs-reader" id="lb-ntfs-reader-2" class="lb-radio" aria-label="Reading the whole MFT into memory, iterating files and resolving paths through parent references"><div class="lightbox" id="lightbox-ntfs-reader-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references"><label class="lb-prev" for="lb-ntfs-reader-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-ntfs-reader-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-ntfs-reader" id="lb-ntfs-reader-3" class="lb-radio" aria-label="USN journal reader: options, records, and rename matching through a history"><div class="lightbox" id="lightbox-ntfs-reader-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history"><label class="lb-prev" for="lb-ntfs-reader-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-ntfs-reader-1" aria-label="Next image">›</label></div>
+</form>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <pre class="project-icon" aria-hidden="true">┌─────┐
+│ ▂▅▇ │
+│ exec│
+│ ▸ ok│
+└─────┘</pre>
+                <div class="project-summary">
+                  <h3>jevmon <span class="project-links"><a href="https://github.com/kikijiki/jevmon" target="_blank" rel="noopener">repo</a></span></h3>
+                  <p>A process monitor for Linux workstations that run agent swarms. A decision model judges every process launch.</p>
+                  <small>python · rust · jev · laya · decision models · fine-tuning</small>
                 </div>
-                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-1"><img src="/projects/ntfs-reader/mft-record-anatomy.png" alt="From the raw volume and boot sector to an MFT file record and its attributes"></a>
-                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-2"><img src="/projects/ntfs-reader/read-pipeline.png" alt="Reading the whole MFT into memory, iterating files and resolving paths through parent references"></a>
-                <a href="#ntfs-reader-gallery" class="lightbox" id="lightbox-ntfs-reader-3"><img src="/projects/ntfs-reader/usn-journal-flow.png" alt="USN journal reader: options, records, and rename matching through a history"></a>
+              </summary>
+              <div class="project-details">
+                <div class="project-gallery" id="jevmon-gallery">
+                  <label for="lb-jevmon-1"><img src="/projects/jevmon/list-tail.png" alt="jevmon event list following the newest verdicts" loading="lazy"></label>
+                  <label for="lb-jevmon-2"><img src="/projects/jevmon/detail.png" alt="jevmon pinned selection with the verdict detail and probabilities" loading="lazy"></label>
+                  <label for="lb-jevmon-3"><img src="/projects/jevmon/filtered.png" alt="jevmon event list narrowed by a text filter" loading="lazy"></label>
+                  <label for="lb-jevmon-4"><img src="/projects/jevmon/trackio.png" alt="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations" loading="lazy"></label>
+                </div>
+                <ul class="project-highlights">
+                  <li>Watches process launches straight from <code>/proc</code>; the code only builds a bounded, sanitized context for each one, and a small decision model gives the verdict. No hardcoded rules, scores or name lists.</li>
+                  <li>Runs on the iGPU of a Strix Halo box: about 50 ms per context and at most two CPU cores, roughly 12 times faster than eight cores on the CPU.</li>
+                  <li>Decisions are memoised per distinct situation, with a bounded queue and batched judging, so it keeps up with a busy build box.</li>
+                  <li>A systemd user daemon with a Unix socket, and a Ratatui terminal client that follows the tail without ever moving your selection.</li>
+                  <li>Every verdict is stored with its context as training data. A rootless-container lab generates labelled scenarios, split by scenario family. On held-out families a head over the frozen encoder reaches 0.68 macro-F1 against 0.21 for always answering routine; zero-shot Laya reaches 0.31 and full fine-tuning 0.56. Runs are tracked in Trackio.</li>
+                </ul>
+<form class="lightboxes">
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-1" class="lb-radio" aria-label="jevmon event list following the newest verdicts"><div class="lightbox" id="lightbox-jevmon-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/list-tail.png" alt="jevmon event list following the newest verdicts"><label class="lb-prev" for="lb-jevmon-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-2" class="lb-radio" aria-label="jevmon pinned selection with the verdict detail and probabilities"><div class="lightbox" id="lightbox-jevmon-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/detail.png" alt="jevmon pinned selection with the verdict detail and probabilities"><label class="lb-prev" for="lb-jevmon-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-3" class="lb-radio" aria-label="jevmon event list narrowed by a text filter"><div class="lightbox" id="lightbox-jevmon-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/filtered.png" alt="jevmon event list narrowed by a text filter"><label class="lb-prev" for="lb-jevmon-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-4" class="lb-radio" aria-label="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations"><div class="lightbox" id="lightbox-jevmon-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/trackio.png" alt="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations"><label class="lb-prev" for="lb-jevmon-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
@@ -162,22 +205,24 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="vuldir-gallery">
+                  <label for="lb-vuldir-1"><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open" loading="lazy"></label>
+                  <label for="lb-vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout" loading="lazy"></label>
+                  <label for="lb-vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse" loading="lazy"></label>
+                  <label for="lb-vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li>One bindless API over Vulkan 1.3 and DirectX 12, omitting either backend's native binding model entirely.</li>
                   <li>Device-owned descriptor heaps for stable resource indices that mean the same thing on both backends.</li>
                   <li>Resource state is tracked virtually while recording and published atomically on submit, so contexts record and submit concurrently.</li>
                   <li>Resource management, math, and PNG/HDR/JSON/glTF loaders are all from scratch, no third-party rendering libraries.</li>
                 </ul>
-                <div class="project-gallery" id="vuldir-gallery">
-                  <a id="vuldir-1" href="#vuldir-1"><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open" loading="lazy"></a>
-                  <a id="vuldir-2" href="#vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout" loading="lazy"></a>
-                  <a id="vuldir-3" href="#vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse" loading="lazy"></a>
-                  <a id="vuldir-4" href="#vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit" loading="lazy"></a>
-                </div>
-                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-1"><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open"></a>
-                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-2"><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout"></a>
-                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-3"><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse"></a>
-                <a href="#vuldir-gallery" class="lightbox" id="lightbox-vuldir-4"><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-vuldir" id="lb-vuldir-1" class="lb-radio" aria-label="Sample renderer showing a glTF helmet with the debug UI open"><div class="lightbox" id="lightbox-vuldir-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/vuldir/sample.png" alt="Sample renderer showing a glTF helmet with the debug UI open"><label class="lb-prev" for="lb-vuldir-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-vuldir-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-vuldir" id="lb-vuldir-2" class="lb-radio" aria-label="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout"><div class="lightbox" id="lightbox-vuldir-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/vuldir/architecture-layers.png" alt="One common API over Vulkan 1.3 and DirectX 12 backends with a shared bindless shader layout"><label class="lb-prev" for="lb-vuldir-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-vuldir-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-vuldir" id="lb-vuldir-3" class="lb-radio" aria-label="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse"><div class="lightbox" id="lightbox-vuldir-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/vuldir/bindless-descriptors.png" alt="Bindless descriptors: device-owned heaps, stable indices, and deferred index reuse"><label class="lb-prev" for="lb-vuldir-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-vuldir-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-vuldir" id="lb-vuldir-4" class="lb-radio" aria-label="Per-context frame ring of command pools and virtual resource state tracking committed on submit"><div class="lightbox" id="lightbox-vuldir-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/vuldir/frame-command-flow.png" alt="Per-context frame ring of command pools and virtual resource state tracking committed on submit"><label class="lb-prev" for="lb-vuldir-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-vuldir-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
@@ -196,6 +241,15 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="combeanie-gallery">
+                  <video controls playsinline preload="metadata" poster="/projects/combeanie/media/restocking-demo-poster.png">
+                    <source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4">
+                  </video>
+                  <label for="lb-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan" loading="lazy"></label>
+                  <label for="lb-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views" loading="lazy"></label>
+                  <label for="lb-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views" loading="lazy"></label>
+                  <label for="lb-combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li>Deterministic pipeline: state machine, world-state validation, geometric grasp/placement, MoveIt planning, then execution.</li>
                   <li>Learned components as optional adapters that can only select among already-authorized primitives, never bypass planning or command joints.</li>
@@ -205,19 +259,12 @@
                   <li>Obstacles absent from every model and scenario file changing what may be executed; execution refused, joints unmoved, when scene geometry is stale.</li>
                   <li>Seeded, byte-deterministic scenario replay for reproducing a specific failure exactly.</li>
                 </ul>
-                <div class="project-gallery" id="combeanie-gallery">
-                  <video controls playsinline preload="metadata" poster="/projects/combeanie/media/restocking-demo-poster.png">
-                    <source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4">
-                  </video>
-                  <a id="combeanie-1" href="#combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan" loading="lazy"></a>
-                  <a id="combeanie-2" href="#combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views" loading="lazy"></a>
-                  <a id="combeanie-3" href="#combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views" loading="lazy"></a>
-                  <a id="combeanie-4" href="#combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section" loading="lazy"></a>
-                </div>
-                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan"></a>
-                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views"></a>
-                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views"></a>
-                <a href="#combeanie-gallery" class="lightbox" id="lightbox-combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" alt="Combined workcell and robot plan"><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-2" class="lb-radio" aria-label="Robot side and front orthographic views"><div class="lightbox" id="lightbox-combeanie-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" alt="Robot side and front orthographic views"><label class="lb-prev" for="lb-combeanie-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-3" class="lb-radio" aria-label="Workcell top and side views"><div class="lightbox" id="lightbox-combeanie-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" alt="Workcell top and side views"><label class="lb-prev" for="lb-combeanie-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" alt="Gravity-fed lane cross-section"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
@@ -236,22 +283,24 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="orgonzola-gallery">
+                  <label for="lb-orgonzola-1"><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention" loading="lazy"></label>
+                  <label for="lb-orgonzola-2"><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment" loading="lazy"></label>
+                  <label for="lb-orgonzola-3"><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list" loading="lazy"></label>
+                  <label for="lb-orgonzola-4"><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li>GitHub activity indexed into teams, sprints, and work items as real linked records, not just labels.</li>
                   <li>Code and threads chunked and embedded into a vector store for RAG-based semantic retrieval.</li>
                   <li>Deterministic rules applied first and cheaply (stale PRs, merges without review, failing CI).</li>
                   <li>LLM limited to fuzzy judgment; the tool stays useful with it switched off.</li>
                 </ul>
-                <div class="project-gallery" id="orgonzola-gallery">
-                  <a id="orgonzola-1" href="#orgonzola-1"><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention" loading="lazy"></a>
-                  <a id="orgonzola-2" href="#orgonzola-2"><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment" loading="lazy"></a>
-                  <a id="orgonzola-3" href="#orgonzola-3"><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list" loading="lazy"></a>
-                  <a id="orgonzola-4" href="#orgonzola-4"><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest" loading="lazy"></a>
-                </div>
-                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-1"><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention"></a>
-                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-2"><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment"></a>
-                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-3"><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list"></a>
-                <a href="#orgonzola-gallery" class="lightbox" id="lightbox-orgonzola-4"><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-orgonzola" id="lb-orgonzola-1" class="lb-radio" aria-label="orgonzola Attention tab with an AI summary of items needing attention"><div class="lightbox" id="lightbox-orgonzola-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/orgonzola/attention.png" alt="orgonzola Attention tab with an AI summary of items needing attention"><label class="lb-prev" for="lb-orgonzola-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-orgonzola-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-orgonzola" id="lb-orgonzola-2" class="lb-radio" aria-label="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment"><div class="lightbox" id="lightbox-orgonzola-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/orgonzola/dashboard.png" alt="orgonzola Dashboard with health scorecard, DORA metrics and sprint commitment"><label class="lb-prev" for="lb-orgonzola-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-orgonzola-3" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-orgonzola" id="lb-orgonzola-3" class="lb-radio" aria-label="orgonzola Code tab with a churn heatmap and code risk list"><div class="lightbox" id="lightbox-orgonzola-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/orgonzola/code-hotspots.png" alt="orgonzola Code tab with a churn heatmap and code risk list"><label class="lb-prev" for="lb-orgonzola-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-orgonzola-4" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-orgonzola" id="lb-orgonzola-4" class="lb-radio" aria-label="orgonzola Standup tab with a weekly digest"><div class="lightbox" id="lightbox-orgonzola-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/orgonzola/standup.png" alt="orgonzola Standup tab with a weekly digest"><label class="lb-prev" for="lb-orgonzola-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-orgonzola-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>
@@ -270,16 +319,18 @@
                 </div>
               </summary>
               <div class="project-details">
+                <div class="project-gallery" id="obsidian-gallery">
+                  <label for="lb-obsidian-1"><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles" loading="lazy"></label>
+                  <label for="lb-obsidian-2"><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline" loading="lazy"></label>
+                </div>
                 <ul class="project-highlights">
                   <li><strong>Kikijiki Habit Tracker.</strong> A compact desktop and mobile panel that records configurable habits as tags on the current note. <a href="https://community.obsidian.md/plugins/kikijiki-habit-tracker" target="_blank" rel="noopener">Install from Obsidian Community Plugins</a>.</li>
                   <li><strong>Kikijiki Voice Journal.</strong> Imports recordings, transcribes them through a configured speech-to-text service, and asks a selected coding agent to create or update Markdown notes in the active vault; keeps original audio, transcripts, resumable run state, and a live filterable activity timeline so every automated vault edit remains traceable. <a href="https://github.com/kikijiki/obsidian-voice-journal" target="_blank" rel="noopener">Source on GitHub</a>.</li>
                 </ul>
-                <div class="project-gallery" id="obsidian-gallery">
-                  <a id="obsidian-1" href="#obsidian-1"><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles" loading="lazy"></a>
-                  <a id="obsidian-2" href="#obsidian-2"><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline" loading="lazy"></a>
-                </div>
-                <a href="#obsidian-gallery" class="lightbox" id="lightbox-obsidian-1"><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles"></a>
-                <a href="#obsidian-gallery" class="lightbox" id="lightbox-obsidian-2"><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline"></a>
+<form class="lightboxes">
+                <input type="radio" name="lb-obsidian" id="lb-obsidian-1" class="lb-radio" aria-label="Kikijiki Habit Tracker panel with configurable daily habit toggles"><div class="lightbox" id="lightbox-obsidian-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/obsidian/habit-tracker.png" alt="Kikijiki Habit Tracker panel with configurable daily habit toggles"><label class="lb-prev" for="lb-obsidian-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-obsidian-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-obsidian" id="lb-obsidian-2" class="lb-radio" aria-label="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline"><div class="lightbox" id="lightbox-obsidian-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/obsidian/voice-journal.png" alt="Kikijiki Voice Journal panel after a completed run, with vault changes to accept or revert above the agent's activity timeline"><label class="lb-prev" for="lb-obsidian-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-obsidian-1" aria-label="Next image">›</label></div>
+</form>
               </div>
             </details>
           </li>

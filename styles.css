@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Icon Mono";
+  src: url("/assets/fonts/dejavu-sans-mono-icons.woff") format("woff");
+  font-display: block;
+}
+
 :root {
   color-scheme: light dark;
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -126,6 +132,7 @@ a:hover {
   overflow: hidden;
   justify-self: start;
   font: inherit;
+  font-family: "Icon Mono", monospace;
   font-size: 0.65rem;
   line-height: 1.15;
   transform: scaleX(1.25);
@@ -159,23 +166,27 @@ a:hover {
 
 .project-gallery {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: safe center;
   align-items: flex-start;
   gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
 }
 
-.project-gallery a,
+.project-gallery label,
 .project-gallery > video {
   display: block;
-  flex: 0 1 max(10rem, calc((100% - 3 * 0.75rem) / 4));
+  flex: none;
 }
 
 .project-gallery img,
 .project-gallery > video {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 8rem;
+  max-width: none;
   border-radius: 0.5rem;
   background: color-mix(in srgb, currentColor 8%, transparent);
   border: 1px dashed color-mix(in srgb, currentColor 30%, transparent);
@@ -201,46 +212,72 @@ a:hover {
 }
 
 .lightbox img {
+  position: relative;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border-radius: 0.75rem;
+  pointer-events: none;
 }
 
-body:has(#poot-1:target) #lightbox-poot-1,
-body:has(#poot-2:target) #lightbox-poot-2,
-body:has(#poot-3:target) #lightbox-poot-3,
-body:has(#poot-4:target) #lightbox-poot-4,
-body:has(#poot-5:target) #lightbox-poot-5,
-body:has(#poot-6:target) #lightbox-poot-6,
-body:has(#ntfs-reader-1:target) #lightbox-ntfs-reader-1,
-body:has(#ntfs-reader-2:target) #lightbox-ntfs-reader-2,
-body:has(#ntfs-reader-3:target) #lightbox-ntfs-reader-3,
-body:has(#vuldir-1:target) #lightbox-vuldir-1,
-body:has(#vuldir-2:target) #lightbox-vuldir-2,
-body:has(#vuldir-3:target) #lightbox-vuldir-3,
-body:has(#vuldir-4:target) #lightbox-vuldir-4,
-body:has(#mfw-1:target) #lightbox-mfw-1,
-body:has(#mfw-2:target) #lightbox-mfw-2,
-body:has(#mfw-3:target) #lightbox-mfw-3,
-body:has(#mfw-4:target) #lightbox-mfw-4,
-body:has(#mfw-5:target) #lightbox-mfw-5,
-body:has(#mfw-6:target) #lightbox-mfw-6,
-body:has(#mfw-7:target) #lightbox-mfw-7,
-body:has(#mfw-8:target) #lightbox-mfw-8,
-body:has(#mfw-9:target) #lightbox-mfw-9,
-body:has(#mfw-10:target) #lightbox-mfw-10,
-body:has(#mfw-11:target) #lightbox-mfw-11,
-body:has(#combeanie-1:target) #lightbox-combeanie-1,
-body:has(#combeanie-2:target) #lightbox-combeanie-2,
-body:has(#combeanie-3:target) #lightbox-combeanie-3,
-body:has(#combeanie-4:target) #lightbox-combeanie-4,
-body:has(#orgonzola-1:target) #lightbox-orgonzola-1,
-body:has(#orgonzola-2:target) #lightbox-orgonzola-2,
-body:has(#orgonzola-3:target) #lightbox-orgonzola-3,
-body:has(#orgonzola-4:target) #lightbox-orgonzola-4,
-body:has(#obsidian-1:target) #lightbox-obsidian-1,
-body:has(#obsidian-2:target) #lightbox-obsidian-2 {
+.lb-radio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lightboxes {
+  display: contents;
+}
+
+.lb-close {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-out;
+}
+
+.lb-prev,
+.lb-next {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-prev {
+  left: 0.5rem;
+}
+
+.lb-next {
+  right: 0.5rem;
+}
+
+.lb-prev:hover,
+.lb-next:hover,
+.lb-prev:focus-visible,
+.lb-next:focus-visible {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.lb-radio:checked + .lightbox {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
