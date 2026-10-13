@@ -1,0 +1,22 @@
+{
+  "mfw": {
+    "dir": "../mfw/docs/screenshots",
+    "files": {
+      "home": "home-dark-1440x900.png",
+      "board": "board-dark-1440x900.png",
+      "board-inspector": "board-inspector-dark-1440x900.png",
+      "flow": "flow-dark-1440x900.png",
+      "fleet": "fleet-dark-1440x900.png",
+      "settings": "settings-dark-1440x900.png"
+    }
+  },
+  "poot": {
+    "dir": "../poot/website/static/img/architecture",
+    "files": {
+      "compilation-pipeline": "compilation-pipeline.png",
+      "model-tracing": "model-tracing.png",
+      "rust-kernels": "rust-kernels.png",
+      "capture-replay": "capture-replay.png"
+    }
+  }
+}

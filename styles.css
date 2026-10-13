@@ -197,7 +197,7 @@ a:hover {
 }
 
 .lightbox {
-  display: flex;
+  display: none;
   position: fixed;
   inset: 0;
   align-items: center;
@@ -206,13 +206,12 @@ a:hover {
   background: rgba(0, 0, 0, 0.85);
   cursor: zoom-out;
   z-index: 100;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .lightbox img {
   position: relative;
+  width: auto;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -278,9 +277,7 @@ a:hover {
 }
 
 .lb-radio:checked + .lightbox {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
+  display: flex;
 }
 
 .projects p {

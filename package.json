@@ -5,6 +5,7 @@
     "dev": "bun scripts/serve.mjs",
     "serve": "bun scripts/serve.mjs",
     "combeanie-media": "bun scripts/combeanie-media.mjs",
-    "render-diagrams": "bun scripts/render-diagrams.mjs"
+    "render-diagrams": "bun scripts/render-diagrams.mjs",
+    "images": "bun scripts/optimize-images.mjs"
   }
 }

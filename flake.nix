@@ -18,6 +18,7 @@
             packages = [
               pkgs.bun
               pkgs.actionlint
+              pkgs.libwebp
             ];
           };
         });
