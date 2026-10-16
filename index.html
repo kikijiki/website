@@ -164,7 +164,7 @@
 └─────┘</pre>
                 <div class="project-summary">
                   <h3>jevmon <span class="project-links"><a href="https://github.com/kikijiki/jevmon" target="_blank" rel="noopener">repo</a></span></h3>
-                  <p>A process monitor for Linux workstations that run agent swarms. A small decision model watches what runs on the machine and rates it safe, warn or crit.</p>
+                  <p>A Linux process monitor for machines that run agent swarms. Instead of hardcoded rules, a decision model judges what runs and flags suspicious or malicious activity and dangerous commands.</p>
                   <small>python · rust · jev · laya · decision models · fine-tuning</small>
                 </div>
               </summary>
@@ -174,10 +174,9 @@
                   <label for="lb-jevmon-2"><img src="/projects/jevmon/trackio-learning-thumb.webp" width="537" height="360" alt="Learning curves: cross-validated macro-F1 and accuracy against the number of training families, plus per-class F1" loading="lazy" decoding="async"></label>
                 </div>
                 <ul class="project-highlights">
-                  <li>Observes process activity from <code>/proc</code> and builds a bounded, sanitized context for a small decision model. No hardcoded rules, scores or name lists.</li>
-                  <li>Runs on the iGPU of a Strix Halo box: 44 to 65 ms per context, against about 2.5 s on two CPU threads.</li>
-                  <li>A systemd user daemon with a Ratatui terminal client.</li>
-                  <li>Verdicts are stored with their context as training data, and a rootless-container lab generates labelled scenarios to evaluate and fine-tune the model. On held-out scenario families it reaches 0.67 macro-F1; the pool is small and synthetic, so treat that as a rough guide.</li>
+                  <li>Built for machines where AI agents run commands on their own. A small decision model looks at each process in context and rates it safe, warn or crit, with no hardcoded rules or name lists.</li>
+                  <li>Runs as a background service with a live terminal client to follow the verdicts.</li>
+                  <li>The decision models are fine-tuned and evaluated on labelled attack and benign scenarios generated in a sandboxed container lab.</li>
                 </ul>
 <form class="lightboxes">
                 <input type="radio" name="lb-jevmon" id="lb-jevmon-1" class="lb-radio" aria-label="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw"><div class="lightbox" id="lightbox-jevmon-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/detail.webp" width="2200" height="1360" alt="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-2" aria-label="Next image">›</label></div>
