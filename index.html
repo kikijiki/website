@@ -7,7 +7,7 @@
     <title>Matteo Bernacchia</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="/assets/fonts/dejavu-sans-mono-icons.woff" as="font" type="font/woff" crossorigin>
-    <link rel="stylesheet" href="/styles.css?v=25">
+    <link rel="stylesheet" href="/styles.css?v=26">
   </head>
   <body>
     <header>
@@ -164,29 +164,24 @@
 └─────┘</pre>
                 <div class="project-summary">
                   <h3>jevmon <span class="project-links"><a href="https://github.com/kikijiki/jevmon" target="_blank" rel="noopener">repo</a></span></h3>
-                  <p>A process monitor for Linux workstations that run agent swarms. A decision model judges every process launch.</p>
+                  <p>A process monitor for Linux workstations that run agent swarms. A small decision model watches what runs on the machine and rates it safe, warn or crit.</p>
                   <small>python · rust · jev · laya · decision models · fine-tuning</small>
                 </div>
               </summary>
               <div class="project-details">
                 <div class="project-gallery" id="jevmon-gallery">
-                  <label for="lb-jevmon-1"><img src="/projects/jevmon/list-tail-thumb.webp" width="582" height="360" alt="jevmon event list following the newest verdicts" loading="lazy" decoding="async"></label>
-                  <label for="lb-jevmon-2"><img src="/projects/jevmon/detail-thumb.webp" width="582" height="360" alt="jevmon pinned selection with the verdict detail and probabilities" loading="lazy" decoding="async"></label>
-                  <label for="lb-jevmon-3"><img src="/projects/jevmon/filtered-thumb.webp" width="582" height="360" alt="jevmon event list narrowed by a text filter" loading="lazy" decoding="async"></label>
-                  <label for="lb-jevmon-4"><img src="/projects/jevmon/trackio-thumb.webp" width="603" height="360" alt="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations" loading="lazy" decoding="async"></label>
+                  <label for="lb-jevmon-1"><img src="/projects/jevmon/detail-thumb.webp" width="582" height="360" alt="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw" loading="lazy" decoding="async"></label>
+                  <label for="lb-jevmon-2"><img src="/projects/jevmon/trackio-learning-thumb.webp" width="537" height="360" alt="Learning curves: cross-validated macro-F1 and accuracy against the number of training families, plus per-class F1" loading="lazy" decoding="async"></label>
                 </div>
                 <ul class="project-highlights">
-                  <li>Watches process launches straight from <code>/proc</code>; the code only builds a bounded, sanitized context for each one, and a small decision model gives the verdict. No hardcoded rules, scores or name lists.</li>
-                  <li>Runs on the iGPU of a Strix Halo box: about 50 ms per context and at most two CPU cores, roughly 12 times faster than eight cores on the CPU.</li>
-                  <li>Decisions are memoised per distinct situation, with a bounded queue and batched judging, so it keeps up with a busy build box.</li>
-                  <li>A systemd user daemon with a Unix socket, and a Ratatui terminal client that follows the tail without ever moving your selection.</li>
-                  <li>Every verdict is stored with its context as training data. A rootless-container lab generates labelled scenarios, split by scenario family. On held-out families a head over the frozen encoder reaches 0.68 macro-F1 against 0.21 for always answering routine; zero-shot Laya reaches 0.31 and full fine-tuning 0.56. Runs are tracked in Trackio.</li>
+                  <li>Observes process activity from <code>/proc</code> and builds a bounded, sanitized context for a small decision model. No hardcoded rules, scores or name lists.</li>
+                  <li>Runs on the iGPU of a Strix Halo box: 44 to 65 ms per context, against about 2.5 s on two CPU threads.</li>
+                  <li>A systemd user daemon with a Ratatui terminal client.</li>
+                  <li>Verdicts are stored with their context as training data, and a rootless-container lab generates labelled scenarios to evaluate and fine-tune the model. On held-out scenario families it reaches 0.67 macro-F1; the pool is small and synthetic, so treat that as a rough guide.</li>
                 </ul>
 <form class="lightboxes">
-                <input type="radio" name="lb-jevmon" id="lb-jevmon-1" class="lb-radio" aria-label="jevmon event list following the newest verdicts"><div class="lightbox" id="lightbox-jevmon-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/list-tail.webp" width="2200" height="1360" alt="jevmon event list following the newest verdicts" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-2" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-jevmon" id="lb-jevmon-2" class="lb-radio" aria-label="jevmon pinned selection with the verdict detail and probabilities"><div class="lightbox" id="lightbox-jevmon-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/detail.webp" width="2200" height="1360" alt="jevmon pinned selection with the verdict detail and probabilities" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-3" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-jevmon" id="lb-jevmon-3" class="lb-radio" aria-label="jevmon event list narrowed by a text filter"><div class="lightbox" id="lightbox-jevmon-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/filtered.webp" width="2200" height="1360" alt="jevmon event list narrowed by a text filter" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-4" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-jevmon" id="lb-jevmon-4" class="lb-radio" aria-label="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations"><div class="lightbox" id="lightbox-jevmon-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/trackio.webp" width="2550" height="1522" alt="Trackio dashboard with training loss and validation macro-F1 for three fine-tune configurations" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-1" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-1" class="lb-radio" aria-label="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw"><div class="lightbox" id="lightbox-jevmon-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/detail.webp" width="2200" height="1360" alt="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-2" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-jevmon" id="lb-jevmon-2" class="lb-radio" aria-label="Learning curves: cross-validated macro-F1 and accuracy against the number of training families, plus per-class F1"><div class="lightbox" id="lightbox-jevmon-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/trackio-learning.webp" width="2091" height="1403" alt="Learning curves: cross-validated macro-F1 and accuracy against the number of training families, plus per-class F1" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-1" aria-label="Next image">›</label></div>
 </form>
               </div>
             </details>
@@ -243,9 +238,7 @@
               </summary>
               <div class="project-details">
                 <div class="project-gallery" id="combeanie-gallery">
-                  <video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-demo-poster.webp">
-                    <source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4">
-                  </video>
+                  <label for="lb-combeanie-0" class="video-thumb"><img src="/projects/combeanie/media/restocking-demo-poster-thumb.webp" width="640" height="360" alt="Combeanie restocking demo video" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"></label>
@@ -261,10 +254,11 @@
                   <li>Seeded, byte-deterministic scenario replay for reproducing a specific failure exactly.</li>
                 </ul>
 <form class="lightboxes">
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
+                                <input type="radio" name="lb-combeanie" id="lb-combeanie-0" class="lb-radio" aria-label="Combeanie restocking demo video"><div class="lightbox" id="lightbox-combeanie-0"><button type="reset" class="lb-close" aria-label="Close"></button><video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-demo-poster.webp" width="960" height="540"><source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4"></video><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-0" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-2" class="lb-radio" aria-label="Robot side and front orthographic views"><div class="lightbox" id="lightbox-combeanie-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-3" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-3" class="lb-radio" aria-label="Workcell top and side views"><div class="lightbox" id="lightbox-combeanie-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-4" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-0" aria-label="Next image">›</label></div>
 </form>
               </div>
             </details>

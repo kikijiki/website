@@ -5,24 +5,14 @@
     "height": 540
   },
   "jevmon/detail": {
-    "sha256": "91d7245202aac37e92c108cd12d1ecee91afd8a015d5d8757173141767e6aaaa",
+    "sha256": "8fe4f8c6cf3a6a3a7f67480a4c7ee7cf24c71ace90c46d847f41c1f90aeb858b",
     "width": 2200,
     "height": 1360
   },
-  "jevmon/filtered": {
-    "sha256": "78de9f843b8894f9e5e86bd76e6050f0f4ec4109be3b9b5543b2c9447fd8f538",
-    "width": 2200,
-    "height": 1360
-  },
-  "jevmon/list-tail": {
-    "sha256": "4b6ade3e127a3b2223548d67351e27452e641feb24a403933afecc3178aaadca",
-    "width": 2200,
-    "height": 1360
-  },
-  "jevmon/trackio": {
-    "sha256": "ffc61c146878343a4265789d46c8aa68283b3ed441dc50e89de13dd1a68e29e6",
-    "width": 2550,
-    "height": 1522
+  "jevmon/trackio-learning": {
+    "sha256": "61e0331218c8ca4890a64dccf5ccdda6d7164b5bafc553737ab0fd513dc6f916",
+    "width": 2091,
+    "height": 1403
   },
   "mfw/board-inspector": {
     "sha256": "a4e6e5cfede5282ee8dbf2c1c8e7099786e095d71a05fc4946d651a185ca37bb",

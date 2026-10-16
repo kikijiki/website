@@ -175,14 +175,12 @@ a:hover {
   overflow-x: auto;
 }
 
-.project-gallery label,
-.project-gallery > video {
+.project-gallery label {
   display: block;
   flex: none;
 }
 
-.project-gallery img,
-.project-gallery > video {
+.project-gallery img {
   display: block;
   width: auto;
   height: 8rem;
@@ -206,6 +204,39 @@ a:hover {
   background: rgba(0, 0, 0, 0.85);
   cursor: zoom-out;
   z-index: 100;
+}
+
+.lightbox video {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0.75rem;
+  background: #000;
+}
+
+.video-thumb {
+  position: relative;
+}
+
+.video-thumb::after {
+  content: "\25B6";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding-left: 0.15rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 1rem;
+  pointer-events: none;
 }
 
 .lightbox img {
