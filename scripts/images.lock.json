@@ -5,14 +5,14 @@
     "height": 540
   },
   "jevmon/detail": {
-    "sha256": "8fe4f8c6cf3a6a3a7f67480a4c7ee7cf24c71ace90c46d847f41c1f90aeb858b",
+    "sha256": "5edfe7c89082972ac199eb5a03d93dddc8e386d5941cd5f02a363fda53f8ebf0",
     "width": 2200,
     "height": 1360
   },
-  "jevmon/trackio-learning": {
-    "sha256": "61e0331218c8ca4890a64dccf5ccdda6d7164b5bafc553737ab0fd513dc6f916",
-    "width": 2091,
-    "height": 1403
+  "jevmon/learning": {
+    "sha256": "2019c2bf11ab53573e87bd3c13c622a2a88d0b478e71a0f6e2f803c488204d4d",
+    "width": 1300,
+    "height": 660
   },
   "mfw/board-inspector": {
     "sha256": "a4e6e5cfede5282ee8dbf2c1c8e7099786e095d71a05fc4946d651a185ca37bb",
