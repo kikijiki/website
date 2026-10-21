@@ -7,7 +7,7 @@
     <title>Matteo Bernacchia</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="/assets/fonts/dejavu-sans-mono-icons.woff" as="font" type="font/woff" crossorigin>
-    <link rel="stylesheet" href="/styles.css?v=26">
+    <link rel="stylesheet" href="/styles.css?v=27">
   </head>
   <body>
     <header>
@@ -18,7 +18,7 @@
     <main>
       <section aria-labelledby="about">
         <h2 id="about">About</h2>
-        <p>I work on systems, graphics, AI, cloud, robotics, and developer tools.</p>
+        <p><span class="motto" lang="la">Opus artificem probat</span>: AI, systems, graphics, cloud and dev tools.</p>
         <ul class="links">
           <li><a href="https://github.com/kikijiki" target="_blank" rel="noopener">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/kikijiki" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -41,11 +41,11 @@
           <li>
             <details>
               <summary>
-                <pre class="project-icon" aria-hidden="true">┌─┬─┬─┐
-├●┘ ●─┤
-│ ┌●┐ │
-├─● └●┤
-└─┴─┴─┘</pre>
+                <pre class="project-icon" aria-hidden="true">╭─────╮
+│  ╭╮ │
+│━╭..╮│
+│━╰──╯│
+╰─────╯</pre>
                 <div class="project-summary">
                   <h3>poot <span class="project-links"><a href="https://github.com/kikijiki/poot" target="_blank" rel="noopener">repo</a> · <a href="https://kikijiki.github.io/poot/" target="_blank" rel="noopener">website</a></span></h3>
                   <p>A from-scratch LLM inference engine with graph tracing, kernel fusion, and multiple GPU backends.</p>
@@ -237,11 +237,14 @@
               </summary>
               <div class="project-details">
                 <div class="project-gallery" id="combeanie-gallery">
-                  <label for="lb-combeanie-0" class="video-thumb"><img src="/projects/combeanie/media/restocking-demo-poster-thumb.webp" width="640" height="360" alt="Combeanie restocking demo video" loading="lazy" decoding="async"></label>
+                                    <label for="lb-combeanie-8" class="video-thumb"><img src="/projects/combeanie/media/restocking-showcase-poster-thumb.webp" width="640" height="360" alt="Combeanie restocking demo in the realistic store scene: a packed shelf and back room with textured products in several shapes" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-5"><img src="/projects/combeanie/img/perception/catalogue-thumb.webp" width="960" height="340" alt="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-6"><img src="/projects/combeanie/img/schematics/identity-ladder.svg" width="1000" height="520" alt="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-7"><img src="/projects/combeanie/img/schematics/perception-data-flow.svg" width="1000" height="600" alt="Perception data flow from depth proposals through identity and lane stock to the inventory" loading="lazy" decoding="async"></label>
                 </div>
                 <ul class="project-highlights">
                   <li>Deterministic pipeline: state machine, world-state validation, geometric grasp/placement, MoveIt planning, then execution.</li>
@@ -251,13 +254,19 @@
                   <li>Lane routing that scores a real cost across compatible lanes, avoiding occupied ones and ones obstructed by something overlapping.</li>
                   <li>Obstacles absent from every model and scenario file changing what may be executed; execution refused, joints unmoved, when scene geometry is stale.</li>
                   <li>Seeded, byte-deterministic scenario replay for reproducing a specific failure exactly.</li>
+                  <li>Product identity from vision, with the barcode optional: the barcode when readable, then label text matched against registered products, then another look from a different side. Look-alike products are never confused: a product is named only when the evidence confirms it, otherwise it asks for another look or a human.</li>
+                  <li>Per-lane stock counted from depth, and inventory totals that separate confirmed, assumed and reported counts, saying so when a lane cannot be read.</li>
+                  <li>Round and box-shaped products from a generated catalogue of fictional brands, each measured against acceptance bounds set before the held-out run, with failed and inconclusive results published.</li>
                 </ul>
 <form class="lightboxes">
-                                <input type="radio" name="lb-combeanie" id="lb-combeanie-0" class="lb-radio" aria-label="Combeanie restocking demo video"><div class="lightbox" id="lightbox-combeanie-0"><button type="reset" class="lb-close" aria-label="Close"></button><video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-demo-poster.webp" width="960" height="540"><source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4"></video><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-0" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
+                                <input type="radio" name="lb-combeanie" id="lb-combeanie-8" class="lb-radio" aria-label="Combeanie restocking demo in the realistic store scene: a packed shelf and back room with textured products in several shapes"><div class="lightbox" id="lightbox-combeanie-8"><button type="reset" class="lb-close" aria-label="Close"></button><video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-showcase-poster.webp" width="1280" height="720"><source src="/projects/combeanie/media/restocking-showcase.mp4" type="video/mp4"></video><label class="lb-prev" for="lb-combeanie-7" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-8" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-2" class="lb-radio" aria-label="Robot side and front orthographic views"><div class="lightbox" id="lightbox-combeanie-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-3" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-3" class="lb-radio" aria-label="Workcell top and side views"><div class="lightbox" id="lightbox-combeanie-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-4" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-0" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-5" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-5" class="lb-radio" aria-label="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels"><div class="lightbox" id="lightbox-combeanie-5"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/perception/catalogue.webp" width="960" height="340" alt="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-6" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-6" class="lb-radio" aria-label="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence"><div class="lightbox" id="lightbox-combeanie-6"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/identity-ladder.svg" width="1000" height="520" alt="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-5" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-7" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-7" class="lb-radio" aria-label="Perception data flow from depth proposals through identity and lane stock to the inventory"><div class="lightbox" id="lightbox-combeanie-7"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/perception-data-flow.svg" width="1000" height="600" alt="Perception data flow from depth proposals through identity and lane stock to the inventory" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-6" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-8" aria-label="Next image">›</label></div>
 </form>
               </div>
             </details>
