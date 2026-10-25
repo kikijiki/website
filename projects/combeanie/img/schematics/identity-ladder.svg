@@ -22,7 +22,7 @@
   <text x="465.00" y="112.00" fill="#1a1f24" font-size="12.5" font-weight="600" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">1  Barcode</text>
   <text x="465.00" y="130.00" fill="#5a6570" font-size="11" font-weight="500" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">a registered GTIN: exact match</text>
   <rect x="330.00" y="182.00" width="270.00" height="70.00" rx="6.00" fill="#d7ebe6" stroke="#1f6b5c" stroke-width="1.6" opacity="1.0"/>
-  <text x="465.00" y="202.00" fill="#1a1f24" font-size="12.5" font-weight="600" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">2  Label text</text>
+  <text x="465.00" y="202.00" fill="#1a1f24" font-size="12.5" font-weight="600" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">2  Label text, second reader if open</text>
   <text x="465.00" y="220.00" fill="#5a6570" font-size="11" font-weight="500" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">one product, clear margin over</text>
   <text x="465.00" y="235.00" fill="#5a6570" font-size="11" font-weight="500" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, sans-serif">the runner-up; in the embedding's top 3</text>
   <line x1="465.00" y1="162.00" x2="465.00" y2="182.00" stroke="#2c3640" stroke-width="1.6" stroke-dasharray="5 4"/>
