@@ -342,7 +342,7 @@
 
         <section class="tab-panel" id="panel-resume" aria-labelledby="tab-resume-label">
         <p>Software engineer with 10+ years of experience across game development and digital twin platforms, building the foundations other teams depend on: data formats and SDKs, storage and data pipelines, 3D viewers, React UIs, and CI/CD, mostly in Rust, Python, and TypeScript, from design through production release. Hands-on experience running workloads on AWS.</p>
-        <p>Currently a hands-on lead of a 6-person team: building core systems myself while owning requirements, scheduling, and security audits, and working with solutions engineers to deliver for factory customers in Japan and overseas. Design and build AI agents end to end (RAG, tool calling, tracing, evals), with an understanding of AI from the underlying math to current techniques. Beyond work, build substantial AI systems of my own, such as a from-scratch LLM inference engine.</p>
+        <p>Currently building core platform systems, from viewers and the data layer to computer vision pipelines for vehicle detection and tracking, with security hardening and compliance for platform services, and working with solutions engineers to deliver for factory customers in Japan and overseas. Design and build AI agents end to end (RAG, tool calling, tracing, evals), with an understanding of AI from the underlying math to current techniques. Beyond work, build substantial AI systems of my own, such as a from-scratch LLM inference engine.</p>
         <p class="resume-download"><a href="/assets/resume.pdf" target="_blank" rel="noopener">Download as PDF (75 KB)</a></p>
 
         <h3 class="resume-heading">Work Experience</h3>
@@ -351,20 +351,21 @@
             <details>
               <summary>
                 <div class="resume-entry-head">
-                  <strong>Lead Software Engineer – Digital Twin Platform</strong>
+                  <strong>Senior Software Engineer – Digital Twin Platform</strong>
                   <span class="resume-dates">Oct 2025 – Present</span>
                 </div>
                 <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
                 <span class="entry-toggle" aria-hidden="true"></span>
               </summary>
               <ul>
-                <li>Lead the Visualizer and Data Pipeline teams (6 people in total): requirements gathering, coordination with other teams, task and schedule management, reviews and planning, security audits</li>
+                <li>Led the Visualizer and Data Pipeline teams (6 people in total): requirements gathering, coordination with other teams, task and schedule management, reviews and planning, security audits</li>
                 <li>Work with solutions engineers to gather needs directly from multiple factories (external companies) in Japan and overseas and feed them into development</li>
                 <li>Built a modular viewer engine (data components, logic, signals, rendering) with plugins for 3D models, Gaussian splats, shapes, text, and images, plus a React panels API with ready-made timeline, annotation, inspection, and profiling panels; adopted by multiple teams to build their own visualizers</li>
                 <li>Improved rendering performance for large files and heavy scenes, and playback and seek performance through data streaming and snapshot support; improved documentation and templates and hardened security</li>
                 <li>Continued evolving the data format and SDK with spec improvements and advanced features including snapshots, sharding, and async I/O; improved dataframe/Databricks integration</li>
                 <li>Implemented a graph-based object storage and data layer that serves every service on the platform and makes onboarding new services fast; supports deduplication, versioning, tags, queries, and recursive operations, backed by an extensive test and fuzzing suite</li>
                 <li>Ported a C#/Unity simulation engine to Rust (Bevy), eliminating licensing fees and improving execution speed by 100x, memory usage by 50x, and binary size by 20x</li>
+                <li>Built computer vision pipelines for vehicle detection and tracking: auto-labeling with SAM 3.1, training RF-DETR detectors, a fusion algorithm merging tracks from multiple cameras, and tooling for experimentation</li>
                 <li>Developed a fully working tech demo presented at Toyota's public Kakezan showcase in Woven City, combining project management, simulation editor and execution, visualizers, KPI dashboards, and an integrated AI agent
                   <ul>
                     <li>Agent present throughout the multi-tool, multi-panel app, working seamlessly with the editor, visualizers, and dashboards; RAG, telemetry DB queries, and file/data search integrated as tools</li>
@@ -378,7 +379,7 @@
             <details>
               <summary>
                 <div class="resume-entry-head">
-                  <strong>Senior Software Engineer – Digital Twin Platform</strong>
+                  <strong>Senior Software Engineer (Contractor) – Digital Twin Platform</strong>
                   <span class="resume-dates">Aug 2024 – Sep 2025</span>
                 </div>
                 <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
