@@ -311,6 +311,10 @@ a:hover {
   display: flex;
 }
 
+.motto {
+  font-style: italic;
+}
+
 .projects p {
   margin-bottom: 0.25rem;
 }

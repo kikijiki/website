@@ -7,7 +7,7 @@
     <title>Matteo Bernacchia</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="/assets/fonts/dejavu-sans-mono-icons.woff" as="font" type="font/woff" crossorigin>
-    <link rel="stylesheet" href="/styles.css?v=26">
+    <link rel="stylesheet" href="/styles.css?v=27">
   </head>
   <body>
     <header>
@@ -18,7 +18,7 @@
     <main>
       <section aria-labelledby="about">
         <h2 id="about">About</h2>
-        <p>I work on systems, graphics, AI, cloud, robotics, and developer tools.</p>
+        <p><span class="motto" lang="la">Opus artificem probat</span>: AI, systems, graphics, cloud and dev tools.</p>
         <ul class="links">
           <li><a href="https://github.com/kikijiki" target="_blank" rel="noopener">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/kikijiki" target="_blank" rel="noopener">LinkedIn</a></li>
@@ -41,11 +41,11 @@
           <li>
             <details>
               <summary>
-                <pre class="project-icon" aria-hidden="true">┌─┬─┬─┐
-├●┘ ●─┤
-│ ┌●┐ │
-├─● └●┤
-└─┴─┴─┘</pre>
+                <pre class="project-icon" aria-hidden="true">╭─────╮
+│  ╭╮ │
+│━╭..╮│
+│━╰──╯│
+╰─────╯</pre>
                 <div class="project-summary">
                   <h3>poot <span class="project-links"><a href="https://github.com/kikijiki/poot" target="_blank" rel="noopener">repo</a> · <a href="https://kikijiki.github.io/poot/" target="_blank" rel="noopener">website</a></span></h3>
                   <p>A from-scratch LLM inference engine with graph tracing, kernel fusion, and multiple GPU backends.</p>
@@ -176,7 +176,7 @@
                 <ul class="project-highlights">
                   <li>Built for machines where AI agents run commands on their own. A small decision model looks at each process in context and rates it safe, warn or crit, with no hardcoded rules or name lists.</li>
                   <li>Runs as a background service fed by an eBPF exec feed (a /proc poller is the alternative), with a live terminal client to follow the verdicts and add allow rules.</li>
-                  <li>Three selectable judge models (Laya by default, Ettin-1B, Qwen3-Embedding-8B): linear heads on frozen embeddings, trained and scored on lab scenarios, synthetic launches and public command datasets.</li>
+                  <li>Five selectable judge models (Laya by default, Ettin-1B, Qwen3-Embedding-8B, and LoRA-tuned Laya and Ettin): linear heads on frozen embeddings or small LoRA adapters merged at load, trained and scored on lab scenarios, synthetic launches and public command datasets.</li>
                 </ul>
 <form class="lightboxes">
                 <input type="radio" name="lb-jevmon" id="lb-jevmon-1" class="lb-radio" aria-label="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw"><div class="lightbox" id="lightbox-jevmon-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/jevmon/detail.webp" width="2200" height="1360" alt="jevmon terminal client: live list of judged process launches with the verdict detail, safe, warn or crit probabilities and the context the model saw" loading="lazy" decoding="async"><label class="lb-prev" for="lb-jevmon-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-jevmon-2" aria-label="Next image">›</label></div>
@@ -237,11 +237,14 @@
               </summary>
               <div class="project-details">
                 <div class="project-gallery" id="combeanie-gallery">
-                  <label for="lb-combeanie-0" class="video-thumb"><img src="/projects/combeanie/media/restocking-demo-poster-thumb.webp" width="640" height="360" alt="Combeanie restocking demo video" loading="lazy" decoding="async"></label>
+                                    <label for="lb-combeanie-8" class="video-thumb"><img src="/projects/combeanie/media/restocking-showcase-poster-thumb.webp" width="640" height="360" alt="Combeanie restocking demo in the realistic store scene: a packed shelf and back room with textured products in several shapes" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-1"><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-2"><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-3"><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"></label>
                   <label for="lb-combeanie-4"><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-5"><img src="/projects/combeanie/img/perception/catalogue-thumb.webp" width="960" height="340" alt="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-6"><img src="/projects/combeanie/img/schematics/identity-ladder.svg" width="1000" height="520" alt="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence" loading="lazy" decoding="async"></label>
+                  <label for="lb-combeanie-7"><img src="/projects/combeanie/img/schematics/perception-data-flow.svg" width="1000" height="600" alt="Perception data flow from depth proposals through identity and lane stock to the inventory" loading="lazy" decoding="async"></label>
                 </div>
                 <ul class="project-highlights">
                   <li>Deterministic pipeline: state machine, world-state validation, geometric grasp/placement, MoveIt planning, then execution.</li>
@@ -251,13 +254,19 @@
                   <li>Lane routing that scores a real cost across compatible lanes, avoiding occupied ones and ones obstructed by something overlapping.</li>
                   <li>Obstacles absent from every model and scenario file changing what may be executed; execution refused, joints unmoved, when scene geometry is stale.</li>
                   <li>Seeded, byte-deterministic scenario replay for reproducing a specific failure exactly.</li>
+                  <li>Product identity from vision, with the barcode optional: the barcode when readable, then label text matched against registered products, then another look from a different side. Look-alike products are never confused: a product is named only when the evidence confirms it, otherwise it asks for another look or a human.</li>
+                  <li>Per-lane stock counted from depth, and inventory totals that separate confirmed, assumed and reported counts, saying so when a lane cannot be read.</li>
+                  <li>Round and box-shaped products from a generated catalogue of fictional brands, each measured against acceptance bounds set before the held-out run, with failed and inconclusive results published.</li>
                 </ul>
 <form class="lightboxes">
-                                <input type="radio" name="lb-combeanie" id="lb-combeanie-0" class="lb-radio" aria-label="Combeanie restocking demo video"><div class="lightbox" id="lightbox-combeanie-0"><button type="reset" class="lb-close" aria-label="Close"></button><video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-demo-poster.webp" width="960" height="540"><source src="/projects/combeanie/media/restocking-demo.mp4" type="video/mp4"></video><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-0" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
+                                <input type="radio" name="lb-combeanie" id="lb-combeanie-8" class="lb-radio" aria-label="Combeanie restocking demo in the realistic store scene: a packed shelf and back room with textured products in several shapes"><div class="lightbox" id="lightbox-combeanie-8"><button type="reset" class="lb-close" aria-label="Close"></button><video controls playsinline preload="none" poster="/projects/combeanie/media/restocking-showcase-poster.webp" width="1280" height="720"><source src="/projects/combeanie/media/restocking-showcase.mp4" type="video/mp4"></video><label class="lb-prev" for="lb-combeanie-7" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-1" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-1" class="lb-radio" aria-label="Combined workcell and robot plan"><div class="lightbox" id="lightbox-combeanie-1"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/layout-plan.svg" width="980" height="620" alt="Combined workcell and robot plan" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-8" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-2" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-2" class="lb-radio" aria-label="Robot side and front orthographic views"><div class="lightbox" id="lightbox-combeanie-2"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/robot-orthographic.svg" width="980" height="560" alt="Robot side and front orthographic views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-1" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-3" aria-label="Next image">›</label></div>
                 <input type="radio" name="lb-combeanie" id="lb-combeanie-3" class="lb-radio" aria-label="Workcell top and side views"><div class="lightbox" id="lightbox-combeanie-3"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/workcell-top-side.svg" width="1000" height="780" alt="Workcell top and side views" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-2" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-4" aria-label="Next image">›</label></div>
-                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-0" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-4" class="lb-radio" aria-label="Gravity-fed lane cross-section"><div class="lightbox" id="lightbox-combeanie-4"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/lane-cross-section.svg" width="900" height="420" alt="Gravity-fed lane cross-section" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-3" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-5" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-5" class="lb-radio" aria-label="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels"><div class="lightbox" id="lightbox-combeanie-5"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/perception/catalogue.webp" width="960" height="340" alt="Catalogue of 20 fictional products, round cans, contoured bottles and box cartons, with generated labels" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-4" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-6" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-6" class="lb-radio" aria-label="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence"><div class="lightbox" id="lightbox-combeanie-6"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/identity-ladder.svg" width="1000" height="520" alt="Identity ladder: barcode, label text, another look, then a human; nothing is named without evidence" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-5" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-7" aria-label="Next image">›</label></div>
+                <input type="radio" name="lb-combeanie" id="lb-combeanie-7" class="lb-radio" aria-label="Perception data flow from depth proposals through identity and lane stock to the inventory"><div class="lightbox" id="lightbox-combeanie-7"><button type="reset" class="lb-close" aria-label="Close"></button><img src="/projects/combeanie/img/schematics/perception-data-flow.svg" width="1000" height="600" alt="Perception data flow from depth proposals through identity and lane stock to the inventory" loading="lazy" decoding="async"><label class="lb-prev" for="lb-combeanie-6" aria-label="Previous image">‹</label><label class="lb-next" for="lb-combeanie-8" aria-label="Next image">›</label></div>
 </form>
               </div>
             </details>
@@ -333,8 +342,8 @@
 
         <section class="tab-panel" id="panel-resume" aria-labelledby="tab-resume-label">
         <p>Software engineer with 10+ years of experience across game development and digital twin platforms, building the foundations other teams depend on: data formats and SDKs, storage and data pipelines, 3D viewers, React UIs, and CI/CD, mostly in Rust, Python, and TypeScript, from design through production release. Hands-on experience running workloads on AWS.</p>
-        <p>Currently a hands-on lead of a 6-person team: building core systems myself while owning requirements, scheduling, and security audits, and working with solutions engineers to deliver for factory customers in Japan and overseas. Design and build AI agents end to end (RAG, tool calling, tracing, evals), with an understanding of AI from the underlying math to current techniques. Beyond work, build substantial AI systems of my own, such as a from-scratch LLM inference engine.</p>
-        <p class="resume-download"><a href="/assets/resume.pdf" target="_blank" rel="noopener">Download as PDF (75 KB)</a></p>
+        <p>Currently a hands-on lead of multiple teams, doing architecture design and coding every day while building core platform systems, from viewers and the data layer to computer vision pipelines for vehicle detection and tracking, with security hardening and compliance for platform services, and working with solutions engineers to deliver for factory customers in Japan and overseas. Design and build AI agents end to end (RAG, tool calling, tracing, evals), with an understanding of AI from the underlying math to current techniques. Beyond work, build substantial AI systems of my own, such as a from-scratch LLM inference engine.</p>
+        <p class="resume-download"><a href="/assets/resume.pdf" target="_blank" rel="noopener">Download as PDF (77 KB)</a></p>
 
         <h3 class="resume-heading">Work Experience</h3>
         <ul class="resume-entries resume-entries-collapsible">
@@ -342,45 +351,29 @@
             <details>
               <summary>
                 <div class="resume-entry-head">
-                  <strong>Lead Software Engineer – Digital Twin Platform</strong>
-                  <span class="resume-dates">Oct 2025 – Present</span>
+                  <strong>Senior Engineer – Digital Twin Platform</strong>
+                  <span class="resume-dates">Aug 2024 – Present</span>
                 </div>
                 <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
                 <span class="entry-toggle" aria-hidden="true"></span>
               </summary>
               <ul>
-                <li>Lead the Visualizer and Data Pipeline teams (6 people in total): requirements gathering, coordination with other teams, task and schedule management, reviews and planning, security audits</li>
+                <li>Led the Visualizer and Data Pipeline teams (6 people in total): requirements gathering, coordination with other teams, task and schedule management, reviews and planning, security audits</li>
                 <li>Work with solutions engineers to gather needs directly from multiple factories (external companies) in Japan and overseas and feed them into development</li>
-                <li>Built a modular viewer engine (data components, logic, signals, rendering) with plugins for 3D models, Gaussian splats, shapes, text, and images, plus a React panels API with ready-made timeline, annotation, inspection, and profiling panels; adopted by multiple teams to build their own visualizers</li>
-                <li>Improved rendering performance for large files and heavy scenes, and playback and seek performance through data streaming and snapshot support; improved documentation and templates and hardened security</li>
-                <li>Continued evolving the data format and SDK with spec improvements and advanced features including snapshots, sharding, and async I/O; improved dataframe/Databricks integration</li>
+                <li>Designed a unified data format specification, now the core technology used across the platform for telemetry data streaming and storage; implemented the SDK with a Rust core and bindings for C#, Python, and WebAssembly (JavaScript/TypeScript), plus CLI tools and dataframe/Databricks integration; later added snapshots, sharding, and async I/O</li>
                 <li>Implemented a graph-based object storage and data layer that serves every service on the platform and makes onboarding new services fast; supports deduplication, versioning, tags, queries, and recursive operations, backed by an extensive test and fuzzing suite</li>
+                <li>Designed a data model based on an ECS-style architecture where components are the semantic unit of data; implemented the component registry, plus related tooling, documentation, and frontend/backend support</li>
+                <li>Built computer vision pipelines for vehicle detection and tracking: auto-labeling with SAM 3.1, training RF-DETR detectors, a fusion algorithm merging tracks from multiple cameras, and tooling for experimentation</li>
+                <li>Developed a React SPA (TypeScript/Three.js/WebGL) for 3D simulation-data playback with real-world telemetry streaming and frame and asset streaming; met all security requirements and shipped</li>
+                <li>Built a modular viewer engine (data components, logic, signals, rendering) with plugins for 3D models, Gaussian splats, shapes, text, and images, plus a React panels API with ready-made timeline, annotation, inspection, and profiling panels; adopted by multiple teams to build their own visualizers</li>
                 <li>Ported a C#/Unity simulation engine to Rust (Bevy), eliminating licensing fees and improving execution speed by 100x, memory usage by 50x, and binary size by 20x</li>
-                <li>Developed a fully working tech demo presented at Toyota's public Kakezan showcase in Woven City, combining project management, simulation editor and execution, visualizers, KPI dashboards, and an integrated AI agent
+                <li>Designed and built an AI agent embedded across a fully working tech demo (project management, simulation editor and execution, visualizers, KPI dashboards), presented at Toyota's public Kakezan showcase in Woven City
                   <ul>
                     <li>Agent present throughout the multi-tool, multi-panel app, working seamlessly with the editor, visualizers, and dashboards; RAG, telemetry DB queries, and file/data search integrated as tools</li>
                     <li>LLMs via AWS Bedrock; OpenTelemetry tracing of turns and tool calls; evals measuring accuracy on common tasks to improve prompts and context design</li>
                   </ul>
                 </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary>
-                <div class="resume-entry-head">
-                  <strong>Senior Software Engineer – Digital Twin Platform</strong>
-                  <span class="resume-dates">Aug 2024 – Sep 2025</span>
-                </div>
-                <div class="resume-entry-sub">Woven by Toyota · Tokyo, Japan</div>
-                <span class="entry-toggle" aria-hidden="true"></span>
-              </summary>
-              <ul>
-                <li>Designed a unified data format specification, now the core technology used across the Digital Twin Platform for telemetry data streaming and storage; implemented the SDK with a Rust core and bindings for C#, Python, and WebAssembly (JavaScript/TypeScript); added CLI tools and dataframe support; integrated with viewers, simulation engines, and data pipelines</li>
-                <li>Developed a React SPA (TypeScript/Three.js/WebGL) for 3D simulation-data playback, with a 3D viewport, UI overlays, frame and asset streaming, tests, and CI/CD; met all security requirements and shipped</li>
-                <li>Added real-world telemetry playback with time-series streaming, asset animation, and custom visualizations; contributed to the design of the mapping from telemetry to viewer entities and animations</li>
-                <li>Designed a data model based on an ECS-style architecture where components are the semantic unit of data; implemented the component registry, plus related tooling, documentation, and frontend/backend support</li>
-                <li>Coordinated GitHub migrations for multiple projects; implemented CI/CD pipelines for build, test, benchmarking, audit, SBOM scanning, publishing, documentation websites, and releases</li>
+                <li>Implemented CI/CD pipelines for build, test, benchmarking, audit, SBOM scanning, publishing, documentation websites, and releases; coordinated GitHub migrations for multiple projects</li>
               </ul>
             </details>
           </li>
@@ -562,8 +555,8 @@
                   <div class="resume-entry-sub">Coursera Project Network · <a href="https://coursera.org/verify/QAYHN5P69EPJ" target="_blank" rel="noopener">Verify</a></div>
                 </li>
                 <li>
-                  <div class="resume-entry-head"><strong>AWS Cloud Solutions Architect Professional Certificate</strong><span class="resume-dates"></span></div>
-                  <div class="resume-entry-sub">Amazon Web Services (Coursera)</div>
+                  <div class="resume-entry-head"><strong>AWS Cloud Solutions Architect Professional Certificate</strong><span class="resume-dates">Oct 2026</span></div>
+                  <div class="resume-entry-sub">Amazon Web Services (Coursera) · <a href="https://coursera.org/verify/professional-cert/CBCEOWTYT1P1" target="_blank" rel="noopener">Verify</a></div>
                 </li>
                 <li>
                   <div class="resume-entry-head"><strong>Infrastructure as Code with Terraform</strong><span class="resume-dates">Jul 2026</span></div>

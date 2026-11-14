@@ -1,8 +1,23 @@
 {
-  "combeanie/media/restocking-demo-poster": {
-    "sha256": "65ceb6d8a9010223a74f90f493f11efbaea71180ee5bb0d53601c9f34c4ea7dd",
+  "combeanie/img/perception/catalogue": {
+    "sha256": "b5abd617500ba37c7c15029488ff11d43c200cc48e505c9b1a80e8e70fbba5dc",
     "width": 960,
-    "height": 540
+    "height": 340
+  },
+  "combeanie/img/perception/registry-box": {
+    "sha256": "ee469469f1eea01ed29c3378d6047c094ec65430eae66a61fee81aa5a5258007",
+    "width": 960,
+    "height": 212
+  },
+  "combeanie/img/perception/registry-can": {
+    "sha256": "d52bbe66b4f303c85b7357c71adbb4c832122d95896306660bce75861c71d5ce",
+    "width": 960,
+    "height": 212
+  },
+  "combeanie/media/restocking-showcase-poster": {
+    "sha256": "c399637a031c89b3f0ca1be4c663f04d5ff751ed5cb42b5531c125ae4751fbd9",
+    "width": 1280,
+    "height": 720
   },
   "jevmon/detail": {
     "sha256": "5edfe7c89082972ac199eb5a03d93dddc8e386d5941cd5f02a363fda53f8ebf0",
