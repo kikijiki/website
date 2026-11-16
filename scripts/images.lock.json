@@ -30,32 +30,32 @@
     "height": 660
   },
   "mfw/board-inspector": {
-    "sha256": "a4e6e5cfede5282ee8dbf2c1c8e7099786e095d71a05fc4946d651a185ca37bb",
+    "sha256": "bf08b7c3f28783f993a35dcd984cc4ce47cf416f48873499f0ec99e22c6bef36",
     "width": 2880,
     "height": 1800
   },
   "mfw/board": {
-    "sha256": "75954185f0f04bd335cc804349a41b09f158004dcb735f0541537f879d2061f5",
+    "sha256": "33045dec4ec469df007251d0626c4941e7b423dd6e817a744219f0e703c4f031",
     "width": 2880,
     "height": 1800
   },
   "mfw/fleet": {
-    "sha256": "6565e4aa7f5677d286309f17d822c91de553848b4322f36a96e0919e18e61e41",
+    "sha256": "a1d4ebab520c703ef50f41c207bfa5f0848735a21a219d99a4b0c712cda6150b",
     "width": 2880,
     "height": 1800
   },
   "mfw/flow": {
-    "sha256": "02c5ca0b2ab668a0e414513c5ac6235bcf46a1b27acf208467d599ff8511c1b3",
+    "sha256": "54a95b1d097448bd5bec3e3693523d8bc94f5a0255baa7e19036c192eadbe96d",
     "width": 2880,
     "height": 1800
   },
   "mfw/home": {
-    "sha256": "893ed6a407540b1098226e1a64ae0d0316536bc37250ecf784f515fea656d343",
+    "sha256": "32f334159ac2777e482264d17c6c7eb26de399f7ded02b834d699f51f53a75af",
     "width": 2880,
     "height": 1800
   },
   "mfw/settings": {
-    "sha256": "fe9ce51c1fcd301c8a3edb65092e0c49000f89a9182f9aa760af85e67a91adff",
+    "sha256": "2935e9f21e7773f43cd9a312f9ad0746124f7727cecb9c939d53c8bac6df9840",
     "width": 2880,
     "height": 1800
   },
