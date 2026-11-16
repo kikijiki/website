@@ -105,22 +105,22 @@
     "height": 2064
   },
   "poot/capture-replay": {
-    "sha256": "9cc60e836bf00e497cd1c731573147250829d7d8daa42d2543b36169939722f3",
+    "sha256": "e84cc17743b93e35084278ed79fe3f3218f6e174f66b3a147b6d38ce7c5c85ee",
     "width": 2400,
     "height": 1270
   },
   "poot/compilation-pipeline": {
-    "sha256": "c98a30ea5faaf74d893c564e272f0b246bf8bde57eb781698fb82165b87cf78f",
+    "sha256": "1fc2f44180d686f0a7f249c3f4d8c2f48eb99ea82bc9542e1e02e8a94dad7b3c",
     "width": 2400,
     "height": 2350
   },
   "poot/model-tracing": {
-    "sha256": "48d95fed644dcfb26eb5bbbe91ade8b060e8580905d7648c01fb0eb9b214faa6",
+    "sha256": "a340e4dd62102639ddb82cd9f85cf9f0e85532ae200da1c74bc38e1004c16b1b",
     "width": 2400,
     "height": 1470
   },
   "poot/rust-kernels": {
-    "sha256": "9f44ed973a379fbe291caad2e70addec1128898ddee67117457bb34e1a677853",
+    "sha256": "640ed6c767ba2a72bdb406ae738747845facd9199bb9552bc8126297c5b62c71",
     "width": 2400,
     "height": 1374
   },
