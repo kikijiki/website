@@ -105,7 +105,7 @@
     "height": 2064
   },
   "poot/capture-replay": {
-    "sha256": "e84cc17743b93e35084278ed79fe3f3218f6e174f66b3a147b6d38ce7c5c85ee",
+    "sha256": "17391a2e4b65fa35bde1c4c1b8952e4611146f508e76fe34432a6d2789013280",
     "width": 2400,
     "height": 1270
   },
@@ -115,7 +115,7 @@
     "height": 2350
   },
   "poot/model-tracing": {
-    "sha256": "a340e4dd62102639ddb82cd9f85cf9f0e85532ae200da1c74bc38e1004c16b1b",
+    "sha256": "8a8cb5c9d5ba3779ef117a03a3af58774edfade59e7f2fe7da333971bb98735b",
     "width": 2400,
     "height": 1470
   },
